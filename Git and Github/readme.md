@@ -1,20 +1,9 @@
-# Git & Github
-## Short Notes
-### FOR DEVOPS ENGINEERS
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
-
----
 
 ## Git & Github Short Notes
 
 Before getting dive into Git and GitHub we've to know some basic terminologies
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 There is a term **Source Code Management** and it has two types:-
 
@@ -22,9 +11,6 @@ There is a term **Source Code Management** and it has two types:-
 - **DVCS** — Distributed Version Control System
 
 ### CVCS — Centralized Version Control System
-
-![CVCS Diagram](https://user-images.githubusercontent.com/placeholder/cvcs-diagram.png)
-*source: edureka*
 
 > **Note**
 > 
@@ -36,14 +22,9 @@ There is a term **Source Code Management** and it has two types:-
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 ### DVCS — Distributed Version Control System
 
-![DVCS Diagram](https://user-images.githubusercontent.com/placeholder/dvcs-diagram.png)
-*source: edureka*
 
 > **Note**
 > 
@@ -56,10 +37,6 @@ To use the CICD pipeline in DevOps, you must have the most recent project update
 **[ 2 ]**
 
 ---
-
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 ## Git three-stage architecture
 
@@ -75,9 +52,7 @@ To use the CICD pipeline in DevOps, you must have the most recent project update
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
+
 
 | Term | Description |
 |------|-------------|
@@ -91,9 +66,6 @@ To use the CICD pipeline in DevOps, you must have the most recent project update
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 | Term | Description |
 |------|-------------|
@@ -147,22 +119,14 @@ git merge <branch-name>
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 ## Conflicts in Git and how to resolve
 
-![Git Conflicts Diagram](https://user-images.githubusercontent.com/placeholder/git-conflicts-diagram.png)
-*source: simplilearn*
 
 **[ 6 ]**
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 When the same file has different content in different branches, if you do merge, conflict occurs (Resolve conflict then add and commit)
 
@@ -184,9 +148,6 @@ The procedures required to resolve merge conflicts in Git might be shortened by 
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 - The `git checkout` command is used to undo the changes made to the file, or for changing branches
 - The `git reset --mixed` command is used to undo changes to the working directory and staging area
@@ -253,9 +214,7 @@ git branch
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
+
 
 **Checkout to a new branch**
 ```bash
@@ -296,9 +255,7 @@ git fetch --all
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
+
 
 **Push your local changes to the remote branch**
 ```bash
@@ -325,9 +282,6 @@ Cherry picking is the act of picking a commit from a branch and applying it to a
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 ## Git Stash and pop
 
@@ -361,9 +315,6 @@ git stash clear
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 ### Git Stash Pop (Reapplying Stashed Changes)
 
@@ -392,9 +343,6 @@ Rebasing is the process of moving or combining a sequence of commits to a new ba
 
 ---
 
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
 
 ## What is git squash?
 
@@ -427,13 +375,4 @@ On pressing enter key, a new window of the text editor will be opened to confirm
 **[ 1 4 ]**
 
 ---
-
-<div align="center">
-  <strong>Thank You Dosto</strong>
-</div>
-
----
-
-<div align="center">
-  <strong>Train With Rohan</strong>
-</div>
+=
