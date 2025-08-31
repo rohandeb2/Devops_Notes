@@ -1,11 +1,3 @@
-# Linux Short notes
-### FOR DEVOPS ENGINEERS
-
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
-
----
 
 ## Linux Short Notes
 
@@ -21,9 +13,6 @@ Today many year pass and Linux become one of the most popular operating systems.
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ## Linux File System Hierarchy
 
@@ -40,9 +29,6 @@ If someone says to look into the slash directory, they refer to the root directo
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### /root
 It is the home directory for the root user (superuser).
@@ -79,9 +65,6 @@ File contents that tend to grow are located in this directory.
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### /mnt→ Mount Directory
 This directory is used to mount a file system temporarily.
@@ -102,9 +85,7 @@ The /boot directory contains the files needed to boot the system — for example
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### /opt → Optional Applications
 The opt directory is used for installing the application software from third-party vendors that are not available in the Linux distribution. Usually, the software code is stored in the opt directory and the binary code is linked to the bin directory so that all users can run that software.
@@ -133,9 +114,6 @@ Files under this directory are deleted when system is rebooted.
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### Create file or directory
 
@@ -164,9 +142,6 @@ Touch command is use for create empty file, we can't write data in a file, can't
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### Create file
 
@@ -201,10 +176,6 @@ cp command is used for copy and paste file or directory
 ### For copy and paste
 
 ---
-
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 **1. For copy file**
 ```bash
@@ -245,9 +216,7 @@ useradd username
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### For check user account properties
 ```bash
@@ -290,9 +259,7 @@ userdel username
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### For change user Login name
 ```bash
@@ -335,9 +302,6 @@ gpasswd -M user1,user2,user3 groupname
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### For remove group member
 ```bash
@@ -381,9 +345,6 @@ ls -ld directory_name
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### Permission in details
 
@@ -399,9 +360,6 @@ ls -ld directory_name
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### For change permission
 
@@ -436,9 +394,7 @@ chgrp new_group filename
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### Set permission with a numeric value
 
@@ -470,9 +426,6 @@ getfacl filename
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### For set ACL permission to user
 ```bash
@@ -511,9 +464,7 @@ The grep filter searches a file for a particular pattern of characters, and disp
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### Search a word (string in a file)
 ```bash
@@ -562,9 +513,7 @@ grep -n "string" filename
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### Display the lines that start with a string
 ```bash
@@ -601,9 +550,6 @@ find / -perm -4000
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### Find files with guid permission
 ```bash
@@ -651,9 +597,7 @@ wc -w filename
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ## head
 
@@ -693,9 +637,7 @@ Archiving is the process of combining multiple files and directories (same or di
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### Tar command syntax
 ```bash
@@ -735,9 +677,6 @@ tar -xvf archive.tar -C /path/to/destination/
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### To create a tar archive file with compress in size (gzip)
 ```bash
@@ -782,9 +721,7 @@ This feature is very useful for the administrator to assign tasks to OS whenever
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### To a set job with at command
 ```bash
@@ -823,9 +760,8 @@ crontab -e
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
+
 
 ### To show cron jobs of the current user
 ```bash
@@ -858,9 +794,6 @@ echo "username" >> /etc/cron.deny
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ## Sudo Command
 
@@ -909,10 +842,6 @@ By default, all members of the wheel group got sudo privileges
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
-
 ### Sudo without password
 
 **For edit configuration file:**
@@ -950,9 +879,7 @@ nmcli con show
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
+
 
 ### To Show all list of connection
 ```bash
@@ -992,9 +919,6 @@ nmcli con add type ethernet con-name "citynet" ifname ens33
 
 ---
 
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
 
 ### To activate new connection
 ```bash
@@ -1052,29 +976,3 @@ If update the file, restart NetworkManager service to update IP-configuration
 ```bash
 systemctl restart NetworkManager
 ```
-
----
-
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
-
-### Note
-
----
-
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
-
----
-
-<div align="center">
-  <strong>Thank You Dosto</strong>
-</div>
-
----
-
-<div align="center">
-  <strong>Train With Shubham</strong>
-</div>
