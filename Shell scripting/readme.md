@@ -5591,3 +5591,3145 @@ caching_demo() {
     echo "=== Caching Techniques ==="
     
     # Expensive operation simulation
+---
+
+## Final Summary and Quick Reference
+
+### Essential Commands Quick Reference
+
+```bash
+# File Operations
+ls -la                    # List files with details
+cp source dest           # Copy files
+mv old new              # Move/rename files
+rm file                 # Remove files
+mkdir dir               # Create directory
+rmdir dir               # Remove empty directory
+find /path -name "*.txt" # Find files
+chmod 755 file          # Change permissions
+
+# Text Processing
+grep "pattern" file     # Search in files
+sed 's/old/new/g' file  # Replace text
+awk '{print $1}' file   # Print first column
+sort file               # Sort lines
+uniq file               # Remove duplicates
+wc -l file              # Count lines
+
+# Variables and Special Characters
+variable="value"        # Set variable
+echo "$variable"        # Use variable
+${#variable}           # Variable length
+${variable:-default}   # Default value
+$0, $1, $2...          # Script arguments
+$#                     # Number of arguments
+$@                     # All arguments
+$                     # Process ID
+$?                     # Exit status
+
+# Control Structures
+if [ condition ]; then
+    commands
+elif [ condition ]; then
+    commands
+else
+    commands
+fi
+
+for item in list; do
+    commands
+done
+
+while [ condition ]; do
+    commands
+done
+
+case $variable in
+    pattern1) commands ;;
+    pattern2) commands ;;
+    *) default commands ;;
+esac
+
+# Functions
+function_name() {
+    local var=$1
+    commands
+    return 0
+}
+```
+
+### Common Patterns and Idioms
+
+```bash
+# Check if file exists
+if [ -f "$filename" ]; then
+    echo "File exists"
+fi
+
+# Process all files in directory
+for file in /path/to/dir/*; do
+    if [ -f "$file" ]; then
+        echo "Processing $file"
+    fi
+done
+
+# Read file line by line
+while IFS= read -r line; do
+    echo "Line: $line"
+done < "$filename"
+
+# Error handling
+command || {
+    echo "Command failed"
+    exit 1
+}
+
+# Logging with timestamp
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') $*"
+}
+
+# Safe temporary files
+temp_file=$(mktemp)
+trap "rm -f '$temp_file'" EXIT
+
+# Check command exists
+if command -v git >/dev/null 2>&1; then
+    echo "Git is available"
+fi
+```
+
+### Testing and Debugging Checklist
+
+- [ ] Use `bash -n script.sh` to check syntax
+- [ ] Use `bash -x script.sh` to trace execution
+- [ ] Use ShellCheck for static analysis
+- [ ] Test with different inputs and edge cases
+- [ ] Test error conditions and cleanup
+- [ ] Verify file permissions and access
+- [ ] Check for proper quoting of variables
+- [ ] Validate exit codes and error handling
+- [ ] Test on different systems if needed
+- [ ] Document usage and examples
+
+### Security Checklist
+
+- [ ] Quote all variables: `"$variable"`
+- [ ] Validate all user inputs
+- [ ] Use absolute paths where possible
+- [ ] Check file permissions before operations
+- [ ] Use `mktemp` for temporary files
+- [ ] Never use `eval` with untrusted input
+- [ ] Set restrictive umask if needed
+- [ ] Clean up temporary resources
+- [ ] Log security-relevant operations
+- [ ] Consider running with minimal privileges
+
+---
+
+## Conclusion
+
+You've now completed a comprehensive journey from shell scripting beginner to advanced practitioner. This guide has covered:
+
+### ✅ What You've Learned
+
+**Foundation Skills:**
+- Shell basics and script creation
+- Variables, data types, and special parameters
+- Input/output handling and user interaction
+- Command-line argument processing
+
+**Control Flow:**
+- Conditional statements (if/else, case)
+- All types of loops (for, while, until)
+- Loop control (break, continue)
+- Decision-making logic
+
+**Advanced Concepts:**
+- Functions and parameter passing
+- Arrays and associative arrays
+- File and directory operations
+- Text processing with grep, sed, awk
+- Regular expressions and pattern matching
+
+**Professional Practices:**
+- Error handling and debugging techniques
+- Process management and signal handling
+- Performance optimization
+- Security considerations
+- Best practices and code organization
+
+**Real-World Applications:**
+- System administration scripts
+- Automation and deployment tools
+- Monitoring and maintenance utilities
+- Development environment setup
+
+### 🎯 Your Next Steps
+
+1. **Practice Regularly**: The key to mastering shell scripting is consistent practice
+2. **Build Real Projects**: Apply your knowledge to solve actual problems
+3. **Join Communities**: Learn from others and share your experiences
+4. **Stay Updated**: Keep learning about new tools and techniques
+5. **Teach Others**: Sharing knowledge reinforces your own understanding
+
+### 🚀 Remember
+
+- **Start Simple**: Begin with small scripts and gradually increase complexity
+- **Test Thoroughly**: Always test your scripts with various inputs and scenarios
+- **Document Well**: Good documentation makes scripts maintainable
+- **Security First**: Always consider security implications
+- **Keep Learning**: Technology evolves, and so should your skills
+
+### 📚 Final Words
+
+Shell scripting is a powerful skill that will serve you throughout your career in technology. Whether you're a system administrator, developer, DevOps engineer, or simply someone who wants to automate repetitive tasks, the knowledge you've gained here will prove invaluable.
+
+The shell is more than just a command-line interface—it's a programming environment that connects you directly to the power of Unix-like systems. With great power comes great responsibility, so always use these skills ethically and responsibly.
+
+**Keep scripting, keep learning, and most importantly, keep solving problems!**
+
+---
+
+*Happy Scripting! 🐚💻✨*
+
+---
+
+> **"The best way to learn shell scripting is by doing. Start with simple tasks, build upon your successes, learn from your mistakes, and before you know it, you'll be automating complex workflows with confidence."**
+
+---
+
+## Appendix: Useful Resources
+
+### Online Tools
+- [ShellCheck](https://www.shellcheck.net/) - Script analysis
+- [Explain Shell](https://explainshell.com/) - Command explanation
+- [Regex101](https://regex101.com/) - Regular expression testing
+- [Bash Manual](https://www.gnu.org/software/bash/manual/)
+
+### Commands for Learning
+- `man bash` - Bash manual
+- `help [command]` - Built-in help
+- `type [command]` - Command information
+- `which [command]` - Command location
+
+### Practice Environments
+- Local Linux/macOS terminal
+- Windows Subsystem for Linux (WSL)
+- Online terminals (repl.it, etc.)
+- Virtual machines
+
+---
+
+**End of Complete Shell Scripting Guide**    local backup_file="$backup_dir/${filename}.backup.${timestamp}"
+    
+    # Perform backup
+    if cp "$source_file" "$backup_file"; then
+        log "INFO" "Backup created: $backup_file"
+        return 0
+    else
+        log "ERROR" "Failed to create backup"
+        return 1
+    fi
+}
+
+#======================================================================
+# Help and Usage Functions
+#======================================================================
+
+# Display usage information
+usage() {
+    cat << EOF
+Usage: $SCRIPT_NAME [OPTIONS] [ARGUMENTS]
+
+DESCRIPTION:
+    Demonstrates shell scripting best practices with proper error handling,
+    logging, configuration management, and code organization.
+
+OPTIONS:
+    -h, --help          Show this help message and exit
+    -v, --verbose       Enable verbose output
+    -d, --debug         Enable debug output
+    -n, --dry-run       Show what would be done without executing
+    -c, --config FILE   Use specified configuration file
+    -l, --log FILE      Use specified log file
+    --version           Show version information
+
+ARGUMENTS:
+    INPUT_FILE          Input file to process
+    OUTPUT_FILE         Output file for results
+
+EXAMPLES:
+    $SCRIPT_NAME --help
+    $SCRIPT_NAME --verbose input.txt output.txt
+    $SCRIPT_NAME --config myconfig.ini --debug input.txt output.txt
+
+EXIT CODES:
+    0   Success
+    1   General error
+    2   Misuse of shell command
+    126 Command invoked cannot execute
+    127 Command not found
+
+For more information, see the documentation or contact support.
+EOF
+}
+
+# Display version information
+version() {
+    cat << EOF
+$SCRIPT_NAME version $SCRIPT_VERSION
+
+This script demonstrates best practices for shell scripting including:
+- Proper error handling and logging
+- Configuration management
+- Input validation
+- Code organization and documentation
+- Signal handling and cleanup
+
+Written for the Complete Shell Scripting Guide.
+EOF
+}
+
+#======================================================================
+# Command Line Argument Processing
+#======================================================================
+
+# Parse command line arguments
+parse_arguments() {
+    local input_file=""
+    local output_file=""
+    
+    # Process options
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                usage
+                exit $EXIT_SUCCESS
+                ;;
+            --version)
+                version
+                exit $EXIT_SUCCESS
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                log "DEBUG" "Verbose mode enabled"
+                shift
+                ;;
+            -d|--debug)
+                DEBUG=true
+                log "DEBUG" "Debug mode enabled"
+                shift
+                ;;
+            -n|--dry-run)
+                DRY_RUN=true
+                log "DEBUG" "Dry run mode enabled"
+                shift
+                ;;
+            -c|--config)
+                CONFIG_FILE="$2"
+                if [[ -z "$CONFIG_FILE" ]]; then
+                    error_exit "Configuration file not specified"
+                fi
+                shift 2
+                ;;
+            -l|--log)
+                LOG_FILE="$2"
+                if [[ -z "$LOG_FILE" ]]; then
+                    error_exit "Log file not specified"
+                fi
+                shift 2
+                ;;
+            --)
+                shift
+                break
+                ;;
+            -*)
+                error_exit "Unknown option: $1" $EXIT_MISUSE
+                ;;
+            *)
+                # Positional arguments
+                if [[ -z "$input_file" ]]; then
+                    input_file="$1"
+                elif [[ -z "$output_file" ]]; then
+                    output_file="$1"
+                else
+                    error_exit "Too many arguments" $EXIT_MISUSE
+                fi
+                shift
+                ;;
+        esac
+    done
+    
+    # Store parsed arguments in global variables
+    INPUT_FILE="$input_file"
+    OUTPUT_FILE="$output_file"
+    
+    log "DEBUG" "Arguments parsed: input=$INPUT_FILE, output=$OUTPUT_FILE"
+}
+
+#======================================================================
+# Main Execution Functions
+#======================================================================
+
+# Initialize script environment
+initialize() {
+    log "DEBUG" "Initializing script environment"
+    
+    # Set up signal handlers
+    trap handle_interrupt INT
+    trap handle_termination TERM
+    trap cleanup EXIT
+    
+    # Validate dependencies
+    validate_dependencies
+    
+    # Load configuration if it exists
+    if [[ -f "$CONFIG_FILE" ]]; then
+        load_config "$CONFIG_FILE"
+    else
+        log "DEBUG" "Configuration file not found, using defaults"
+    fi
+    
+    # Create log directory if needed
+    if [[ -n "$LOG_FILE" ]]; then
+        mkdir -p "$(dirname "$LOG_FILE")"
+    fi
+    
+    log "INFO" "Script initialization completed"
+}
+
+# Main application logic
+main() {
+    log "INFO" "$SCRIPT_NAME v$SCRIPT_VERSION starting"
+    
+    # Validate required arguments
+    if [[ -z "$INPUT_FILE" ]] || [[ -z "$OUTPUT_FILE" ]]; then
+        log "ERROR" "Both input and output files must be specified"
+        usage >&2
+        exit $EXIT_MISUSE
+    fi
+    
+    # Show what we're doing
+    log "INFO" "Input file: $INPUT_FILE"
+    log "INFO" "Output file: $OUTPUT_FILE"
+    log "INFO" "Dry run mode: $DRY_RUN"
+    
+    # Create test input file for demonstration
+    if [[ ! -f "$INPUT_FILE" ]]; then
+        log "INFO" "Creating test input file: $INPUT_FILE"
+        cat > "$INPUT_FILE" << EOF
+This is a test file
+with multiple lines
+for demonstration purposes
+EOF
+    fi
+    
+    if [[ "$DRY_RUN" == true ]]; then
+        log "INFO" "DRY RUN: Would process $INPUT_FILE -> $OUTPUT_FILE"
+        log "INFO" "DRY RUN: Would create backup of input file"
+        log "INFO" "DRY RUN: Would validate processed output"
+    else
+        # Create backup of input file
+        backup_file "$INPUT_FILE"
+        
+        # Process the data
+        process_data "$INPUT_FILE" "$OUTPUT_FILE"
+        
+        # Validate output
+        if [[ -f "$OUTPUT_FILE" ]]; then
+            local line_count=$(wc -l < "$OUTPUT_FILE")
+            log "INFO" "Processing completed: $line_count lines in output file"
+        else
+            error_exit "Output file was not created"
+        fi
+    fi
+    
+    log "INFO" "$SCRIPT_NAME completed successfully"
+}
+
+#======================================================================
+# Script Entry Point
+#======================================================================
+
+# Main execution
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    # Parse command line arguments
+    parse_arguments "$@"
+    
+    # Initialize script environment
+    initialize
+    
+    # Run main application
+    main
+fi
+
+#======================================================================
+# Best Practices Summary
+#======================================================================
+
+: << 'BEST_PRACTICES_DOCUMENTATION'
+
+=== SHELL SCRIPTING BEST PRACTICES SUMMARY ===
+
+1. SCRIPT STRUCTURE:
+   - Use clear, documented header with script metadata
+   - Organize code into logical sections with comments
+   - Define constants and global variables at the top
+   - Use consistent function naming and organization
+
+2. ERROR HANDLING:
+   - Use 'set -e' for strict error handling (or handle errors explicitly)
+   - Define meaningful exit codes
+   - Implement proper cleanup functions
+   - Use trap for signal handling
+
+3. LOGGING AND DEBUGGING:
+   - Implement comprehensive logging with levels
+   - Support verbose and debug modes
+   - Log to files and/or stderr appropriately
+   - Include timestamps in log entries
+
+4. INPUT VALIDATION:
+   - Validate all user inputs and arguments
+   - Check file existence and permissions
+   - Validate data formats (email, IP, numbers, etc.)
+   - Provide meaningful error messages
+
+5. CONFIGURATION MANAGEMENT:
+   - Support external configuration files
+   - Provide sensible defaults
+   - Allow command-line overrides
+   - Document all configuration options
+
+6. SECURITY CONSIDERATIONS:
+   - Quote variables to prevent word splitting
+   - Use absolute paths where possible
+   - Validate inputs to prevent injection
+   - Set appropriate file permissions
+
+7. CODE QUALITY:
+   - Use meaningful variable and function names
+   - Add comments for complex logic
+   - Follow consistent formatting
+   - Use readonly for constants
+
+8. PORTABILITY:
+   - Use POSIX-compatible commands when possible
+   - Check for required dependencies
+   - Handle different operating system variations
+   - Avoid bashisms if targeting multiple shells
+
+9. TESTING AND MAINTENANCE:
+   - Include usage examples and documentation
+   - Support dry-run modes for testing
+   - Implement comprehensive help messages
+   - Version your scripts
+
+10. PERFORMANCE:
+    - Use built-in commands instead of external ones
+    - Minimize subshell creation
+    - Use arrays for batch operations
+    - Consider parallel processing for independent tasks
+
+BEST_PRACTICES_DOCUMENTATION
+
+echo ""
+echo "=== BEST PRACTICES DEMONSTRATION ==="
+echo ""
+echo "This script demonstrates comprehensive best practices including:"
+echo "  ✓ Proper script structure and organization"
+echo "  ✓ Comprehensive error handling and logging"
+echo "  ✓ Configuration management"
+echo "  ✓ Input validation and sanitization"
+echo "  ✓ Command-line argument processing"
+echo "  ✓ Signal handling and cleanup"
+echo "  ✓ Documentation and help systems"
+echo "  ✓ Security considerations"
+echo "  ✓ Maintainable and readable code"
+echo ""
+echo "Try running this script with different options:"
+echo "  $0 --help"
+echo "  $0 --verbose input.txt output.txt"
+echo "  $0 --debug --dry-run test.txt result.txt"
+```
+
+---
+
+## Common Pitfalls
+
+Avoiding common mistakes in shell scripting.
+
+### Quoting and Variable Issues
+```bash
+#!/bin/bash
+
+echo "=== COMMON PITFALLS AND HOW TO AVOID THEM ==="
+echo ""
+
+# Pitfall 1: Unquoted Variables
+echo "1. UNQUOTED VARIABLES"
+echo "====================="
+
+dangerous_example() {
+    echo "❌ WRONG WAY:"
+    local filename="my file with spaces.txt"
+    
+    # This will fail because of spaces
+    echo "Creating file..."
+    # touch $filename  # DON'T DO THIS!
+    echo "Command that would run: touch $filename"
+    echo "This would create 4 separate files: 'my', 'file', 'with', 'spaces.txt'"
+}
+
+safe_example() {
+    echo ""
+    echo "✅ CORRECT WAY:"
+    local filename="my file with spaces.txt"
+    
+    # Always quote variables
+    touch "$filename"
+    echo "Created file: $filename"
+    ls -la "$filename"
+    rm "$filename"  # Cleanup
+}
+
+dangerous_example
+safe_example
+
+echo ""
+echo "LESSON: Always quote variables: \"\$variable\" not \$variable"
+echo ""
+
+# Pitfall 2: Word Splitting in Arrays
+echo "2. ARRAY HANDLING"
+echo "================="
+
+array_pitfall_demo() {
+    echo "❌ WRONG WAY:"
+    local files=("file one.txt" "file two.txt" "file three.txt")
+    
+    echo "Files array contains:"
+    for file in ${files[@]}; do  # WRONG - no quotes
+        echo "  '$file'"
+    done
+    
+    echo ""
+    echo "✅ CORRECT WAY:"
+    echo "Files array contains:"
+    for file in "${files[@]}"; do  # CORRECT - quoted
+        echo "  '$file'"
+    done
+}
+
+array_pitfall_demo
+
+echo ""
+echo "LESSON: Always quote array expansions: \"\${array[@]}\" not \${array[@]}"
+echo ""
+
+# Pitfall 3: Command Substitution Issues
+echo "3. COMMAND SUBSTITUTION"
+echo "======================="
+
+command_substitution_demo() {
+    echo "❌ POTENTIALLY PROBLEMATIC:"
+    # Using backticks (old style)
+    local old_style=`date +%Y-%m-%d`
+    echo "Date (backticks): $old_style"
+    
+    echo ""
+    echo "✅ PREFERRED:"
+    # Using $() (new style)
+    local new_style=$(date +%Y-%m-%d)
+    echo "Date (\$() syntax): $new_style"
+    
+    echo ""
+    echo "❌ DANGEROUS (command injection risk):"
+    local user_input="date; rm -rf /"  # Simulated malicious input
+    echo "User input: $user_input"
+    echo "If you ran: result=\$($user_input)"
+    echo "This could execute: date; rm -rf /"
+    
+    echo ""
+    echo "✅ SAFER:"
+    echo "Always validate and sanitize input before using in command substitution"
+}
+
+command_substitution_demo
+
+echo ""
+
+# Pitfall 4: Test Condition Mistakes
+echo "4. TEST CONDITIONS"
+echo "=================="
+
+test_condition_demo() {
+    local empty_var=""
+    local undefined_var
+    local number_var="42"
+    local string_var="hello"
+    
+    echo "Testing different variables:"
+    echo "empty_var='$empty_var'"
+    echo "undefined_var='${undefined_var:-undefined}'"
+    echo "number_var='$number_var'"
+    echo "string_var='$string_var'"
+    echo ""
+    
+    echo "❌ COMMON MISTAKES:"
+    
+    # Mistake 1: Not quoting in tests
+    echo "Unquoted variable test (can cause syntax errors):"
+    if [ $empty_var = "" ]; then  # Can cause syntax error
+        echo "  This might work but is dangerous"
+    fi
+    
+    echo ""
+    echo "✅ CORRECT APPROACHES:"
+    
+    # Correct way 1: Quote everything
+    if [ "$empty_var" = "" ]; then
+        echo "  ✓ Empty variable detected (quoted test)"
+    fi
+    
+    # Correct way 2: Use -z for empty test
+    if [ -z "$empty_var" ]; then
+        echo "  ✓ Empty variable detected (-z test)"
+    fi
+    
+    # Correct way 3: Use -n for non-empty test
+    if [ -n "$string_var" ]; then
+        echo "  ✓ Non-empty variable detected (-n test)"
+    fi
+    
+    echo ""
+    echo "Numeric comparisons:"
+    echo "❌ WRONG: [ \$number_var > 30 ]  # String comparison!"
+    if [ "$number_var" -gt 30 ]; then  # Numeric comparison
+        echo "✅ CORRECT: [ \$number_var -gt 30 ]  # $number_var > 30"
+    fi
+}
+
+test_condition_demo
+
+echo ""
+
+# Pitfall 5: Exit Code Confusion
+echo "5. EXIT CODES AND PIPELINES"
+echo "============================"
+
+exit_code_demo() {
+    echo "❌ COMMON MISTAKE:"
+    echo "Not checking exit codes or understanding pipeline exit codes"
+    
+    # This might mask failures
+    echo "Example pipeline that might hide errors:"
+    echo "cat nonexistent.txt | grep 'pattern' | wc -l"
+    
+    local result=$(cat /nonexistent/file.txt 2>/dev/null | grep 'pattern' | wc -l)
+    echo "Result: $result (but we don't know if cat failed)"
+    
+    echo ""
+    echo "✅ BETTER APPROACHES:"
+    
+    # Method 1: Check each command
+    echo "Method 1: Check intermediate results"
+    local temp_file="/tmp/test_data"
+    echo "test data with pattern" > "$temp_file"
+    
+    if cat "$temp_file" > /tmp/cat_output; then
+        if grep 'pattern' /tmp/cat_output > /tmp/grep_output; then
+            local count=$(wc -l < /tmp/grep_output)
+            echo "Found $count matches"
+        else
+            echo "No pattern found"
+        fi
+    else
+        echo "Failed to read file"
+    fi
+    
+    # Method 2: Use set -o pipefail
+    echo ""
+    echo "Method 2: Use 'set -o pipefail'"
+    set -o pipefail
+    local pipeline_result=$(cat "$temp_file" | grep 'pattern' | wc -l)
+    if [ $? -eq 0 ]; then
+        echo "Pipeline succeeded: $pipeline_result matches"
+    else
+        echo "Pipeline failed"
+    fi
+    set +o pipefail
+    
+    # Cleanup
+    rm -f "$temp_file" /tmp/cat_output /tmp/grep_output
+}
+
+exit_code_demo
+
+echo ""
+
+# Pitfall 6: Loop and Subshell Issues
+echo "6. LOOPS AND SUBSHELLS"
+echo "======================="
+
+loop_pitfall_demo() {
+    echo "❌ COMMON MISTAKE: Variable changes in subshell don't persist"
+    
+    local counter=0
+    echo "Initial counter: $counter"
+    
+    # This creates a subshell - counter changes won't persist
+    echo "one two three" | while read -r word; do
+        echo "Processing: $word"
+        ((counter++))
+        echo "Counter in loop: $counter"
+    done
+    
+    echo "Counter after loop: $counter (unchanged!)"
+    
+    echo ""
+    echo "✅ CORRECT APPROACHES:"
+    
+    # Method 1: Use process substitution
+    counter=0
+    while read -r word; do
+        echo "Processing: $word"
+        ((counter++))
+    done < <(echo "one two three" | tr ' ' '\n')
+    echo "Counter after process substitution: $counter"
+    
+    # Method 2: Use array
+    counter=0
+    local words=(one two three)
+    for word in "${words[@]}"; do
+        echo "Processing: $word"
+        ((counter++))
+    done
+    echo "Counter after array loop: $counter"
+}
+
+loop_pitfall_demo
+
+echo ""
+
+# Pitfall 7: File and Directory Operations
+echo "7. FILE AND DIRECTORY OPERATIONS"
+echo "================================="
+
+file_operations_demo() {
+    echo "❌ COMMON MISTAKES:"
+    
+    # Mistake 1: Not checking if file exists
+    echo "Not checking if file exists before operations"
+    
+    # Mistake 2: Race conditions
+    echo "Race conditions between checking and using files"
+    
+    # Mistake 3: Not handling special characters
+    echo "Not handling files with special characters"
+    
+    echo ""
+    echo "✅ BETTER PRACTICES:"
+    
+    local test_file="test file with spaces & special chars!.txt"
+    
+    # Create test file
+    echo "test content" > "$test_file"
+    
+    # Safe file operations
+    if [ -f "$test_file" ]; then
+        echo "✓ File exists: '$test_file'"
+        
+        # Safe reading
+        if [ -r "$test_file" ]; then
+            local content=$(cat "$test_file")
+            echo "✓ Content: '$content'"
+        else
+            echo "✗ Cannot read file"
+        fi
+        
+        # Safe removal
+        if rm "$test_file"; then
+            echo "✓ File removed successfully"
+        else
+            echo "✗ Failed to remove file"
+        fi
+    else
+        echo "✗ File does not exist"
+    fi
+    
+    echo ""
+    echo "Directory operations:"
+    local test_dir="test directory with spaces"
+    
+    if mkdir -p "$test_dir"; then
+        echo "✓ Directory created: '$test_dir'"
+        
+        if rmdir "$test_dir"; then
+            echo "✓ Directory removed successfully"
+        fi
+    fi
+}
+
+file_operations_demo
+
+echo ""
+
+# Pitfall 8: Security Issues
+echo "8. SECURITY PITFALLS"
+echo "====================="
+
+security_demo() {
+    echo "❌ SECURITY MISTAKES:"
+    echo ""
+    
+    echo "1. Using eval with untrusted input"
+    echo "   eval \"\$user_input\"  # DANGEROUS!"
+    echo ""
+    
+    echo "2. Not validating file paths"
+    echo "   cat \"\$user_provided_path\"  # Could access any file!"
+    echo ""
+    
+    echo "3. Temporary file race conditions"
+    echo "   tmp_file=/tmp/script.\$\$  # Predictable name"
+    echo ""
+    
+    echo "✅ SECURITY BEST PRACTICES:"
+    echo ""
+    
+    echo "1. Validate all inputs"
+    validate_path() {
+        local path=$1
+        local base_dir="/safe/directory"
+        
+        # Resolve path and check if it's within safe directory
+        local resolved_path=$(realpath "$path" 2>/dev/null || echo "")
+        
+        if [[ "$resolved_path" == "$base_dir"* ]]; then
+            echo "✓ Path is safe: $resolved_path"
+            return 0
+        else
+            echo "✗ Path is unsafe: $path"
+            return 1
+        fi
+    }
+    
+    echo "Example: validate_path '../../../etc/passwd'"
+    validate_path "../../../etc/passwd"
+    
+    echo ""
+    echo "2. Use secure temporary files"
+    local secure_temp=$(mktemp)
+    echo "✓ Secure temporary file: $secure_temp"
+    rm "$secure_temp"
+    
+    echo ""
+    echo "3. Set restrictive permissions"
+    local sensitive_file="sensitive.txt"
+    echo "sensitive data" > "$sensitive_file"
+    chmod 600 "$sensitive_file"  # Only owner can read/write
+    echo "✓ Set restrictive permissions (600) on $sensitive_file"
+    ls -la "$sensitive_file"
+    rm "$sensitive_file"
+}
+
+security_demo
+
+echo ""
+echo "=== PITFALL AVOIDANCE CHECKLIST ==="
+echo ""
+echo "Before running your scripts, check:"
+echo "  □ All variables are quoted: \"\$variable\""
+echo "  □ Arrays use quoted expansion: \"\${array[@]}\""
+echo "  □ Test conditions are properly quoted"
+echo "  □ Exit codes are checked"
+echo "  □ File operations are safe"
+echo "  □ Input is validated"
+echo "  □ No eval with untrusted input"
+echo "  □ Temporary files are secure"
+echo "  □ Error handling is comprehensive"
+echo "  □ Script has been tested with various inputs"
+echo ""
+echo "Remember: It's better to be overly cautious than to have a script fail in production!"
+```
+
+---
+
+## Next Steps
+
+Congratulations on completing the comprehensive shell scripting guide! Here's your roadmap for continued learning.
+
+### Immediate Next Steps (Week 1-2)
+```bash
+#!/bin/bash
+
+echo "=== YOUR SHELL SCRIPTING JOURNEY CONTINUES ==="
+echo ""
+
+# Create a learning progress tracker
+create_learning_tracker() {
+    local tracker_file="$HOME/shell_scripting_progress.md"
+    
+    cat > "$tracker_file" << 'EOF'
+# Shell Scripting Learning Progress
+
+## Completed ✅
+- [ ] Basic shell scripting concepts
+- [ ] Variables and data types
+- [ ] Conditional statements and loops
+- [ ] Functions and parameters
+- [ ] File operations
+- [ ] Text processing (grep, sed, awk)
+- [ ] Arrays and advanced data structures
+- [ ] Error handling and debugging
+- [ ] Best practices and security
+
+## Next Steps 🎯
+
+### Week 1-2: Practice and Consolidation
+- [ ] Write 5 utility scripts for daily tasks
+- [ ] Practice debugging techniques
+- [ ] Create a personal script library
+
+### Month 1: Intermediate Skills
+- [ ] Learn advanced bash features
+- [ ] Study system administration scripts
+- [ ] Practice automation scenarios
+
+### Month 2-3: Advanced Topics
+- [ ] Explore shell alternatives (zsh, fish)
+- [ ] Learn about containerization with scripts
+- [ ] Study CI/CD integration
+
+### Ongoing: Real-world Projects
+- [ ] Contribute to open-source projects
+- [ ] Build automation tools for work/projects
+- [ ] Share knowledge with others
+
+## Resources 📚
+- [Bash Manual](https://www.gnu.org/software/bash/manual/)
+- [ShellCheck](https://www.shellcheck.net/) - Script analysis tool
+- [Bash Pitfalls](http://mywiki.wooledge.org/BashPitfalls)
+- [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)
+
+## Personal Notes
+_Add your own notes and insights here_
+
+EOF
+
+    echo "Created learning tracker: $tracker_file"
+    echo "Use this file to track your progress and plan next steps"
+}
+
+# Suggest practical projects
+suggest_practice_projects() {
+    echo ""
+    echo "=== PRACTICE PROJECTS FOR BEGINNERS ==="
+    echo ""
+    echo "Start with these practical projects:"
+    echo ""
+    
+    echo "📁 FILE MANAGEMENT:"
+    echo "   • Photo organizer (sort by date/type)"
+    echo "   • Duplicate file finder"
+    echo "   • Automated backup script"
+    echo "   • Directory cleanup tool"
+    echo ""
+    
+    echo "🖥️  SYSTEM MONITORING:"
+    echo "   • Disk space alert script"
+    echo "   • Process monitor with email alerts"
+    echo "   • Log file analyzer"
+    echo "   • System health dashboard"
+    echo ""
+    
+    echo "🌐 NETWORK UTILITIES:"
+    echo "   • Website uptime monitor"
+    echo "   • Port scanner"
+    echo "   • Network configuration backup"
+    echo "   • SSL certificate expiry checker"
+    echo ""
+    
+    echo "⚙️  DEVELOPMENT TOOLS:"
+    echo "   • Project initialization script"
+    echo "   • Code formatter/linter runner"
+    echo "   • Git workflow automation"
+    echo "   • Environment setup script"
+    echo ""
+}
+
+# Advanced learning path
+advanced_learning_path() {
+    echo "=== ADVANCED LEARNING PATH ==="
+    echo ""
+    
+    echo "🚀 ADVANCED BASH FEATURES:"
+    echo "   • Parameter expansion techniques"
+    echo "   • Advanced pattern matching"
+    echo "   • Process substitution mastery"
+    echo "   • Co-processes and named pipes"
+    echo ""
+    
+    echo "🏗️  INFRASTRUCTURE AUTOMATION:"
+    echo "   • Server provisioning scripts"
+    echo "   • Configuration management"
+    echo "   • Container management"
+    echo "   • CI/CD pipeline integration"
+    echo ""
+    
+    echo "🔧 SYSTEM ADMINISTRATION:"
+    echo "   • User and permission management"
+    echo "   • Service monitoring and control"
+    echo "   • Log aggregation and analysis"
+    echo "   • Performance monitoring"
+    echo ""
+    
+    echo "☁️  CLOUD AND DEVOPS:"
+    echo "   • AWS/GCP/Azure CLI automation"
+    echo "   • Kubernetes scripting"
+    echo "   • Infrastructure as Code helpers"
+    echo "   • Monitoring and alerting"
+    echo ""
+}
+
+# Tool recommendations
+recommend_tools() {
+    echo "=== ESSENTIAL TOOLS FOR SHELL SCRIPTERS ==="
+    echo ""
+    
+    echo "📋 DEVELOPMENT TOOLS:"
+    echo "   • ShellCheck - Static analysis for shell scripts"
+    echo "   • shfmt - Shell script formatter"
+    echo "   • bats - Bash Automated Testing System"
+    echo "   • VS Code with Bash extensions"
+    echo ""
+    
+    echo "🔍 DEBUGGING TOOLS:"
+    echo "   • bashdb - Bash debugger"
+    echo "   • set -x - Built-in execution tracing"
+    echo "   • shellcheck online - Browser-based checking"
+    echo ""
+    
+    echo "📚 LEARNING RESOURCES:"
+    echo "   • explainshell.com - Command explanation"
+    echo "   • regex101.com - Regular expression tester"
+    echo "   • man pages - Built-in documentation"
+    echo "   • tldr - Simplified man pages"
+    echo ""
+}
+
+# Create a sample weekly practice plan
+create_practice_plan() {
+    echo ""
+    echo "=== SUGGESTED WEEKLY PRACTICE PLAN ==="
+    echo ""
+    
+    local plan_file="$HOME/weekly_practice_plan.md"
+    
+    cat > "$plan_file" << 'EOF'
+# Weekly Shell Scripting Practice Plan
+
+## Week 1: Foundation Reinforcement
+**Monday**: Review variables and basic I/O
+- Write a script that takes user input and processes it
+- Practice with different variable types
+
+**Tuesday**: Conditionals and logic
+- Create a file/directory analyzer script
+- Practice with different test conditions
+
+**Wednesday**: Loops and iteration
+- Write a log file processor
+- Practice with for, while, and until loops
+
+**Thursday**: Functions and modularity
+- Refactor previous scripts to use functions
+- Create a utility function library
+
+**Friday**: File operations
+- Build a backup and restore system
+- Practice with file permissions and ownership
+
+**Weekend Project**: Personal utility script
+- Combine the week's learning into one useful tool
+
+## Week 2: Practical Applications
+**Monday**: Text processing
+- Create a data extraction script
+- Practice with grep, sed, and awk
+
+**Tuesday**: Arrays and data structures
+- Build an inventory management system
+- Work with associative arrays
+
+**Wednesday**: Error handling
+- Add robust error handling to previous scripts
+- Practice with different error scenarios
+
+**Thursday**: Process management
+- Create a service monitor
+- Practice with background processes
+
+**Friday**: Integration and testing
+- Combine multiple scripts
+- Test edge cases and error conditions
+
+**Weekend Project**: Complete automation solution
+- Build a multi-component system (e.g., monitoring + alerting + reporting)
+
+## Week 3+: Advanced Topics
+- Choose specialization area (DevOps, SysAdmin, Development)
+- Work on larger, real-world projects
+- Contribute to open source or share with community
+EOF
+
+    echo "Created practice plan: $plan_file"
+}
+
+# Community and resources
+community_resources() {
+    echo ""
+    echo "=== COMMUNITY AND CONTINUED LEARNING ==="
+    echo ""
+    
+    echo "👥 COMMUNITIES:"
+    echo "   • r/bash (Reddit)"
+    echo "   • Unix & Linux Stack Exchange"
+    echo "   • Bash tag on Stack Overflow"
+    echo "   • Local Linux/Unix user groups"
+    echo ""
+    
+    echo "📖 RECOMMENDED READING:"
+    echo "   • 'Classic Shell Scripting' by Robbins & Beebe"
+    echo "   • 'Learning the bash Shell' by Newham & Rosenblatt"
+    echo "   • 'Bash Cookbook' by Albing, Vossen & Newham"
+    echo "   • 'Unix Power Tools' by Peek, O'Reilly & Loukides"
+    echo ""
+    
+    echo "🎥 VIDEO RESOURCES:"
+    echo "   • YouTube: NetworkChuck, Learn Linux TV"
+    echo "   • Linux Academy / A Cloud Guru"
+    echo "   • Pluralsight shell scripting courses"
+    echo ""
+    
+    echo "🏆 CERTIFICATION PATHS:"
+    echo "   • Linux Professional Institute (LPIC-1)"
+    echo "   • Red Hat Certified System Administrator (RHCSA)"
+    echo "   • CompTIA Linux+"
+    echo ""
+}
+
+# Final motivational message
+final_message() {
+    echo ""
+    echo "🎉 CONGRATULATIONS! 🎉"
+    echo ""
+    echo "You've completed a comprehensive journey through shell scripting!"
+    echo "From basic commands to advanced automation, you now have the tools"
+    echo "to solve real-world problems with shell scripts."
+    echo ""
+    echo "Remember:"
+    echo "  • Start small and build complexity gradually"
+    echo "  • Practice regularly with real projects"
+    echo "  • Always test your scripts thoroughly"
+    echo "  • Share your knowledge and learn from others"
+    echo "  • Keep security and best practices in mind"
+    echo ""
+    echo "The shell is a powerful tool - use it wisely and creatively!"
+    echo ""
+    echo "Your journey as a shell scripting expert has just begun. 🚀"
+    echo ""
+    echo "Good luck, and happy scripting!"
+}
+
+# Run all sections
+create_learning_tracker
+suggest_practice_projects
+advanced_learning_path
+recommend_tools
+create_practice_plan
+community_resources
+final_message
+```
+
+---        setup_log_message "INFO" "Package $package installed successfully"
+    }
+    
+    # Setup Git configuration
+    setup_git() {
+        setup_log_message "INFO" "Setting up Git configuration"
+        
+        if command_exists git; then
+            # Check if Git is already configured
+            local git_user=$(git config --global user.name 2>/dev/null || echo "")
+            local git_email=$(git config --global user.email 2>/dev/null || echo "")
+            
+            if [ -z "$git_user" ] || [ -z "$git_email" ]; then
+                setup_log_message "INFO" "Git not configured, setting up with demo values"
+                
+                # Set demo configuration
+                git config --global user.name "Developer" 2>/dev/null
+                git config --global user.email "developer@example.com" 2>/dev/null
+                git config --global init.defaultBranch "main" 2>/dev/null
+                
+                setup_log_message "INFO" "Git configuration completed"
+            else
+                setup_log_message "INFO" "Git already configured for $git_user ($git_email)"
+            fi
+        else
+            setup_log_message "WARNING" "Git not found, would install if this were a real setup"
+            install_package "git"
+        fi
+    }
+    
+    # Setup development directories
+    setup_directories() {
+        setup_log_message "INFO" "Setting up development directories"
+        
+        local dev_dirs=(
+            "$HOME/Development"
+            "$HOME/Development/projects"
+            "$HOME/Development/scripts"
+            "$HOME/Development/tools"
+            "$HOME/.local/bin"
+        )
+        
+        for dir in "${dev_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+                mkdir -p "$dir"
+                setup_log_message "INFO" "Created directory: $dir"
+            else
+                setup_log_message "INFO" "Directory already exists: $dir"
+            fi
+        done
+    }
+    
+    # Setup shell configuration
+    setup_shell_config() {
+        setup_log_message "INFO" "Setting up shell configuration"
+        
+        local shell_config=""
+        case "$SHELL" in
+            */bash)
+                shell_config="$HOME/.bashrc"
+                ;;
+            */zsh)
+                shell_config="$HOME/.zshrc"
+                ;;
+            *)
+                shell_config="$HOME/.profile"
+                ;;
+        esac
+        
+        # Add development environment to PATH
+        local path_addition='export PATH="$HOME/.local/bin:$PATH"'
+        
+        if [ -f "$shell_config" ]; then
+            if ! grep -q ".local/bin" "$shell_config"; then
+                echo "" >> "$shell_config"
+                echo "# Development environment" >> "$shell_config"
+                echo "$path_addition" >> "$shell_config"
+                setup_log_message "INFO" "Added development PATH to $shell_config"
+            else
+                setup_log_message "INFO" "Development PATH already configured in $shell_config"
+            fi
+        else
+            echo "$path_addition" > "$shell_config"
+            setup_log_message "INFO" "Created $shell_config with development PATH"
+        fi
+        
+        # Add useful aliases
+        local aliases=(
+            'alias ll="ls -la"'
+            'alias la="ls -A"'
+            'alias l="ls -CF"'
+            'alias grep="grep --color=auto"'
+            'alias dev="cd $HOME/Development"'
+        )
+        
+        echo "" >> "$shell_config"
+        echo "# Development aliases" >> "$shell_config"
+        for alias_cmd in "${aliases[@]}"; do
+            if ! grep -q "$alias_cmd" "$shell_config"; then
+                echo "$alias_cmd" >> "$shell_config"
+            fi
+        done
+        
+        setup_log_message "INFO" "Shell configuration completed"
+    }
+    
+    # Create useful development scripts
+    create_dev_scripts() {
+        setup_log_message "INFO" "Creating development utility scripts"
+        
+        local scripts_dir="$HOME/Development/scripts"
+        
+        # Project initialization script
+        cat > "$scripts_dir/new-project.sh" << 'EOF'
+#!/bin/bash
+# Quick project initialization script
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <project-name> [language]"
+    echo "Languages: python, node, bash, go"
+    exit 1
+fi
+
+project_name="$1"
+language="${2:-bash}"
+
+mkdir -p "$HOME/Development/projects/$project_name"
+cd "$HOME/Development/projects/$project_name"
+
+case $language in
+    python)
+        echo "# $project_name" > README.md
+        echo "print('Hello from $project_name')" > main.py
+        echo "requests" > requirements.txt
+        ;;
+    node)
+        echo "# $project_name" > README.md
+        echo "console.log('Hello from $project_name');" > index.js
+        echo '{"name":"'$project_name'","version":"1.0.0","main":"index.js"}' > package.json
+        ;;
+    go)
+        echo "# $project_name" > README.md
+        echo 'package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello from '$project_name'")
+}' > main.go
+        ;;
+    bash)
+        echo "# $project_name" > README.md
+        echo '#!/bin/bash
+echo "Hello from '$project_name'"' > main.sh
+        chmod +x main.sh
+        ;;
+esac
+
+if command -v git >/dev/null; then
+    git init
+    git add .
+    git commit -m "Initial commit"
+fi
+
+echo "Project $project_name created in $(pwd)"
+EOF
+        chmod +x "$scripts_dir/new-project.sh"
+        
+        # System information script
+        cat > "$scripts_dir/sysinfo.sh" << 'EOF'
+#!/bin/bash
+# Quick system information display
+
+echo "=== System Information ==="
+echo "Hostname: $(hostname)"
+echo "OS: $(uname -s) $(uname -r)"
+echo "Architecture: $(uname -m)"
+echo "Uptime: $(uptime -p 2>/dev/null || uptime)"
+echo "Load: $(uptime | awk -F'load average:' '{print $2}')"
+echo "Memory: $(free -h | awk 'NR==2{print $3"/"$2}')"
+echo "Disk: $(df -h / | awk 'NR==2{print $3"/"$2" ("$5")"}')"
+echo "Shell: $SHELL"
+echo "User: $(whoami)"
+echo "Date: $(date)"
+EOF
+        chmod +x "$scripts_dir/sysinfo.sh"
+        
+        # Add scripts to PATH
+        ln -sf "$scripts_dir/new-project.sh" "$HOME/.local/bin/new-project" 2>/dev/null
+        ln -sf "$scripts_dir/sysinfo.sh" "$HOME/.local/bin/sysinfo" 2>/dev/null
+        
+        setup_log_message "INFO" "Development scripts created and linked"
+    }
+    
+    # Verify installation
+    verify_setup() {
+        setup_log_message "INFO" "Verifying development environment setup"
+        
+        local verification_passed=true
+        
+        # Check directories
+        local required_dirs=(
+            "$HOME/Development"
+            "$HOME/Development/projects"
+            "$HOME/Development/scripts"
+            "$HOME/.local/bin"
+        )
+        
+        for dir in "${required_dirs[@]}"; do
+            if [ -d "$dir" ]; then
+                setup_log_message "INFO" "✓ Directory exists: $dir"
+            else
+                setup_log_message "ERROR" "✗ Directory missing: $dir"
+                verification_passed=false
+            fi
+        done
+        
+        # Check scripts
+        local required_scripts=(
+            "$HOME/.local/bin/new-project"
+            "$HOME/.local/bin/sysinfo"
+        )
+        
+        for script in "${required_scripts[@]}"; do
+            if [ -x "$script" ]; then
+                setup_log_message "INFO" "✓ Script available: $(basename "$script")"
+            else
+                setup_log_message "ERROR" "✗ Script missing: $script"
+                verification_passed=false
+            fi
+        done
+        
+        if $verification_passed; then
+            setup_log_message "INFO" "✓ Development environment setup verification PASSED"
+            return 0
+        else
+            setup_log_message "ERROR" "✗ Development environment setup verification FAILED"
+            return 1
+        fi
+    }
+    
+    # Generate setup summary
+    generate_setup_summary() {
+        echo ""
+        echo "=== DEVELOPMENT ENVIRONMENT SETUP SUMMARY ==="
+        echo "Setup completed: $(date)"
+        echo ""
+        echo "Created directories:"
+        echo "  ~/Development/projects  - For your projects"
+        echo "  ~/Development/scripts   - For utility scripts"
+        echo "  ~/.local/bin           - For personal executables"
+        echo ""
+        echo "Available commands:"
+        echo "  new-project <name> [language] - Create new project"
+        echo "  sysinfo                       - Show system information"
+        echo ""
+        echo "Shell configuration updated:"
+        case "$SHELL" in
+            */bash) echo "  ~/.bashrc - Added PATH and aliases" ;;
+            */zsh)  echo "  ~/.zshrc - Added PATH and aliases" ;;
+            *)      echo "  ~/.profile - Added PATH and aliases" ;;
+        esac
+        echo ""
+        echo "To apply changes to current session, run:"
+        echo "  source ~/.bashrc   (or reload your terminal)"
+        echo ""
+        echo "Setup log: $setup_log"
+    }
+    
+    # Run the setup
+    setup_log_message "INFO" "Starting development environment setup"
+    
+    setup_git
+    setup_directories
+    setup_shell_config
+    create_dev_scripts
+    
+    if verify_setup; then
+        generate_setup_summary
+    else
+        echo "Setup completed with errors. Check $setup_log for details."
+    fi
+}
+
+# Server deployment automation
+server_deployment() {
+    echo ""
+    echo "=== SERVER DEPLOYMENT AUTOMATION ==="
+    
+    # Configuration
+    local deploy_log="deploy.log"
+    local app_name="sample-app"
+    local app_version="1.0.0"
+    local deploy_dir="/opt/$app_name"
+    local service_name="$app_name"
+    
+    # Deployment logging
+    deploy_log_message() {
+        local level=$1
+        local message=$2
+        local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+        
+        echo "[$timestamp] [$level] $message" | tee -a "$deploy_log"
+    }
+    
+    # Pre-deployment checks
+    pre_deployment_checks() {
+        deploy_log_message "INFO" "Running pre-deployment checks"
+        
+        local checks_passed=true
+        
+        # Check disk space
+        local available_space=$(df / | awk 'NR==2 {print $4}')
+        local required_space=1000000  # 1GB in KB
+        
+        if [ "$available_space" -lt "$required_space" ]; then
+            deploy_log_message "ERROR" "Insufficient disk space"
+            checks_passed=false
+        else
+            deploy_log_message "INFO" "✓ Sufficient disk space available"
+        fi
+        
+        # Check if running as appropriate user
+        if [ "$(id -u)" -eq 0 ]; then
+            deploy_log_message "WARNING" "Running as root - consider using dedicated user"
+        fi
+        
+        # Check network connectivity
+        if ping -c 1 8.8.8.8 >/dev/null 2>&1; then
+            deploy_log_message "INFO" "✓ Network connectivity OK"
+        else
+            deploy_log_message "ERROR" "No network connectivity"
+            checks_passed=false
+        fi
+        
+        if $checks_passed; then
+            deploy_log_message "INFO" "✓ Pre-deployment checks passed"
+            return 0
+        else
+            deploy_log_message "ERROR" "✗ Pre-deployment checks failed"
+            return 1
+        fi
+    }
+    
+    # Create application structure
+    create_app_structure() {
+        deploy_log_message "INFO" "Creating application structure"
+        
+        # Create directories
+        local app_dirs=(
+            "$deploy_dir"
+            "$deploy_dir/bin"
+            "$deploy_dir/config"
+            "$deploy_dir/logs"
+            "$deploy_dir/data"
+            "/etc/$app_name"
+        )
+        
+        for dir in "${app_dirs[@]}"; do
+            if mkdir -p "$dir" 2>/dev/null; then
+                deploy_log_message "INFO" "Created directory: $dir"
+            else
+                deploy_log_message "ERROR" "Failed to create directory: $dir"
+                return 1
+            fi
+        done
+        
+        return 0
+    }
+    
+    # Deploy application files
+    deploy_application() {
+        deploy_log_message "INFO" "Deploying application files"
+        
+        # Create sample application
+        cat > "$deploy_dir/bin/$app_name" << EOF
+#!/bin/bash
+# Sample application - $app_name v$app_version
+
+echo "Starting $app_name v$app_version"
+echo "PID: \$\$"
+echo "Started at: \$(date)"
+
+# Log startup
+echo "[\$(date)] $app_name started" >> "$deploy_dir/logs/app.log"
+
+# Main application loop (simulation)
+counter=0
+while true; do
+    echo "[\$(date)] Application running - iteration \$counter" >> "$deploy_dir/logs/app.log"
+    sleep 10
+    ((counter++))
+    
+    # Exit after 10 iterations for demo
+    if [ \$counter -ge 10 ]; then
+        echo "[\$(date)] $app_name stopping (demo limit reached)" >> "$deploy_dir/logs/app.log"
+        break
+    fi
+done
+
+echo "[\$(date)] $app_name stopped" >> "$deploy_dir/logs/app.log"
+EOF
+        
+        chmod +x "$deploy_dir/bin/$app_name"
+        
+        # Create configuration file
+        cat > "$deploy_dir/config/app.conf" << EOF
+# $app_name Configuration
+app_name=$app_name
+app_version=$app_version
+log_level=INFO
+max_connections=100
+bind_port=8080
+EOF
+        
+        # Create systemd service file (simulation)
+        cat > "/tmp/$service_name.service" << EOF
+[Unit]
+Description=$app_name Application
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+ExecStart=$deploy_dir/bin/$app_name
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+        
+        deploy_log_message "INFO" "Application files deployed successfully"
+        return 0
+    }
+    
+    # Configure monitoring
+    setup_monitoring() {
+        deploy_log_message "INFO" "Setting up monitoring"
+        
+        # Create health check script
+        cat > "$deploy_dir/bin/health-check.sh" << EOF
+#!/bin/bash
+# Health check script for $app_name
+
+check_process() {
+    if pgrep -f "$app_name" > /dev/null; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+check_log() {
+    local log_file="$deploy_dir/logs/app.log"
+    if [ -f "\$log_file" ]; then
+        # Check if log was updated in last 60 seconds
+        local last_modified=\$(stat -c %Y "\$log_file" 2>/dev/null || echo 0)
+        local current_time=\$(date +%s)
+        local diff=\$((current_time - last_modified))
+        
+        if [ \$diff -lt 60 ]; then
+            return 0
+        else
+            return 1
+        fi
+    else
+        return 1
+    fi
+}
+
+# Run checks
+if check_process && check_log; then
+    echo "HEALTHY"
+    exit 0
+else
+    echo "UNHEALTHY"
+    exit 1
+fi
+EOF
+        
+        chmod +x "$deploy_dir/bin/health-check.sh"
+        
+        # Create monitoring cron job
+        echo "*/5 * * * * $deploy_dir/bin/health-check.sh >> $deploy_dir/logs/health.log 2>&1" > "/tmp/$app_name-cron"
+        
+        deploy_log_message "INFO" "Monitoring setup completed"
+    }
+    
+    # Post-deployment verification
+    post_deployment_verification() {
+        deploy_log_message "INFO" "Running post-deployment verification"
+        
+        local verification_passed=true
+        
+        # Check if application files exist
+        local required_files=(
+            "$deploy_dir/bin/$app_name"
+            "$deploy_dir/config/app.conf"
+            "$deploy_dir/bin/health-check.sh"
+        )
+        
+        for file in "${required_files[@]}"; do
+            if [ -f "$file" ]; then
+                deploy_log_message "INFO" "✓ File exists: $file"
+            else
+                deploy_log_message "ERROR" "✗ File missing: $file"
+                verification_passed=false
+            fi
+        done
+        
+        # Check if application is executable
+        if [ -x "$deploy_dir/bin/$app_name" ]; then
+            deploy_log_message "INFO" "✓ Application is executable"
+        else
+            deploy_log_message "ERROR" "✗ Application is not executable"
+            verification_passed=false
+        fi
+        
+        # Test health check
+        if "$deploy_dir/bin/health-check.sh" >/dev/null 2>&1; then
+            local health_status="HEALTHY"
+        else
+            local health_status="UNHEALTHY"
+        fi
+        deploy_log_message "INFO" "Health check status: $health_status"
+        
+        if $verification_passed; then
+            deploy_log_message "INFO" "✓ Post-deployment verification passed"
+            return 0
+        else
+            deploy_log_message "ERROR" "✗ Post-deployment verification failed"
+            return 1
+        fi
+    }
+    
+    # Rollback function
+    rollback_deployment() {
+        deploy_log_message "WARNING" "Initiating deployment rollback"
+        
+        # Stop application if running
+        if pgrep -f "$app_name" >/dev/null; then
+            pkill -f "$app_name"
+            deploy_log_message "INFO" "Stopped running application"
+        fi
+        
+        # Remove deployed files
+        if [ -d "$deploy_dir" ]; then
+            rm -rf "$deploy_dir"
+            deploy_log_message "INFO" "Removed deployment directory"
+        fi
+        
+        # Remove service file
+        rm -f "/tmp/$service_name.service"
+        rm -f "/tmp/$app_name-cron"
+        
+        deploy_log_message "INFO" "Rollback completed"
+    }
+    
+    # Generate deployment report
+    generate_deployment_report() {
+        echo ""
+        echo "=== DEPLOYMENT REPORT ==="
+        echo "Application: $app_name v$app_version"
+        echo "Deployed to: $deploy_dir"
+        echo "Deployment time: $(date)"
+        echo ""
+        
+        echo "Deployed files:"
+        if [ -d "$deploy_dir" ]; then
+            find "$deploy_dir" -type f | sed 's/^/  /'
+        else
+            echo "  No files found"
+        fi
+        
+        echo ""
+        echo "Application status:"
+        if [ -x "$deploy_dir/bin/health-check.sh" ]; then
+            local health_status=$("$deploy_dir/bin/health-check.sh" 2>/dev/null || echo "UNHEALTHY")
+            echo "  Health: $health_status"
+        else
+            echo "  Health: Unknown (health check not available)"
+        fi
+        
+        echo ""
+        echo "Quick start commands:"
+        echo "  Start application: $deploy_dir/bin/$app_name &"
+        echo "  Check health:      $deploy_dir/bin/health-check.sh"
+        echo "  View logs:         tail -f $deploy_dir/logs/app.log"
+        
+        echo ""
+        echo "Deployment log: $deploy_log"
+    }
+    
+    # Main deployment process
+    deploy_log_message "INFO" "Starting deployment of $app_name v$app_version"
+    
+    if ! pre_deployment_checks; then
+        deploy_log_message "ERROR" "Deployment aborted due to failed pre-checks"
+        return 1
+    fi
+    
+    if ! create_app_structure; then
+        deploy_log_message "ERROR" "Deployment failed during structure creation"
+        rollback_deployment
+        return 1
+    fi
+    
+    if ! deploy_application; then
+        deploy_log_message "ERROR" "Deployment failed during application deployment"
+        rollback_deployment
+        return 1
+    fi
+    
+    setup_monitoring
+    
+    if post_deployment_verification; then
+        deploy_log_message "INFO" "✓ Deployment completed successfully"
+        generate_deployment_report
+        return 0
+    else
+        deploy_log_message "ERROR" "Deployment verification failed"
+        echo "Deployment completed but verification failed. Check logs for details."
+        echo "Use rollback if needed."
+        return 1
+    fi
+}
+
+# Run automation examples
+echo "Running Automation Examples..."
+echo ""
+
+automated_backup_system
+
+dev_environment_setup
+
+server_deployment
+
+echo ""
+echo "=========================================="
+echo "All automation examples completed!"
+echo "Check the generated log files for detailed information."
+```
+
+---
+
+## Best Practices
+
+Essential best practices for writing maintainable and reliable shell scripts.
+
+### Script Structure and Organization
+```bash
+#!/bin/bash
+
+# This script demonstrates best practices for shell script structure
+
+#======================================================================
+# Script Information
+#======================================================================
+# Script Name: best-practices-demo.sh
+# Description: Demonstrates shell scripting best practices
+# Author: Shell Script Guide
+# Version: 1.0.0
+# Created: 2024-01-01
+# Last Modified: 2024-01-01
+#
+# Usage: ./best-practices-demo.sh [options]
+# Examples:
+#   ./best-practices-demo.sh --help
+#   ./best-practices-demo.sh --verbose --config config.ini
+#======================================================================
+
+#======================================================================
+# Global Variables and Constants
+#======================================================================
+
+# Script metadata
+readonly SCRIPT_NAME=$(basename "$0")
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_VERSION="1.0.0"
+
+# Configuration
+readonly DEFAULT_CONFIG_FILE="$SCRIPT_DIR/config.ini"
+readonly DEFAULT_LOG_FILE="$SCRIPT_DIR/script.log"
+readonly DEFAULT_TEMP_DIR="/tmp/$SCRIPT_NAME.$"
+
+# Exit codes
+readonly EXIT_SUCCESS=0
+readonly EXIT_GENERAL_ERROR=1
+readonly EXIT_MISUSE=2
+readonly EXIT_CANNOT_EXECUTE=126
+readonly EXIT_COMMAND_NOT_FOUND=127
+
+# Global flags
+VERBOSE=false
+DEBUG=false
+DRY_RUN=false
+CONFIG_FILE="$DEFAULT_CONFIG_FILE"
+LOG_FILE="$DEFAULT_LOG_FILE"
+
+#======================================================================
+# Utility Functions
+#======================================================================
+
+# Logging function
+log() {
+    local level=$1
+    shift
+    local message="$*"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    
+    # Log to file if specified
+    if [[ -n "$LOG_FILE" ]]; then
+        echo "[$timestamp] [$level] $message" >> "$LOG_FILE"
+    fi
+    
+    # Output to stderr for ERROR and WARNING
+    case $level in
+        ERROR)
+            echo "[$level] $message" >&2
+            ;;
+        WARNING)
+            echo "[$level] $message" >&2
+            ;;
+        INFO)
+            [[ "$VERBOSE" == true ]] && echo "[$level] $message"
+            ;;
+        DEBUG)
+            [[ "$DEBUG" == true ]] && echo "[$level] $message" >&2
+            ;;
+    esac
+}
+
+# Error handling
+error_exit() {
+    local message=${1:-"Unknown error"}
+    local exit_code=${2:-$EXIT_GENERAL_ERROR}
+    
+    log "ERROR" "$message"
+    cleanup_and_exit $exit_code
+}
+
+# Cleanup function
+cleanup() {
+    log "DEBUG" "Running cleanup function"
+    
+    # Remove temporary files
+    if [[ -d "$DEFAULT_TEMP_DIR" ]]; then
+        rm -rf "$DEFAULT_TEMP_DIR"
+        log "DEBUG" "Removed temporary directory: $DEFAULT_TEMP_DIR"
+    fi
+    
+    # Kill background jobs
+    local jobs=$(jobs -p)
+    if [[ -n "$jobs" ]]; then
+        echo "$jobs" | xargs kill 2>/dev/null
+        log "DEBUG" "Killed background jobs"
+    fi
+}
+
+# Cleanup and exit
+cleanup_and_exit() {
+    local exit_code=${1:-$EXIT_SUCCESS}
+    cleanup
+    exit $exit_code
+}
+
+# Signal handlers
+handle_interrupt() {
+    log "WARNING" "Received interrupt signal"
+    cleanup_and_exit $EXIT_GENERAL_ERROR
+}
+
+handle_termination() {
+    log "WARNING" "Received termination signal"
+    cleanup_and_exit $EXIT_GENERAL_ERROR
+}
+
+#======================================================================
+# Validation Functions
+#======================================================================
+
+# Validate required commands
+validate_dependencies() {
+    log "DEBUG" "Validating dependencies"
+    
+    local required_commands=("awk" "sed" "grep" "sort")
+    local missing_commands=()
+    
+    for cmd in "${required_commands[@]}"; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            missing_commands+=("$cmd")
+        fi
+    done
+    
+    if [[ ${#missing_commands[@]} -gt 0 ]]; then
+        error_exit "Missing required commands: ${missing_commands[*]}"
+    fi
+    
+    log "DEBUG" "All dependencies satisfied"
+}
+
+# Validate file permissions
+validate_file_access() {
+    local file=$1
+    local access_type=${2:-"r"}  # r=read, w=write, x=execute
+    
+    case $access_type in
+        r)
+            if [[ ! -r "$file" ]]; then
+                return 1
+            fi
+            ;;
+        w)
+            if [[ ! -w "$file" ]]; then
+                return 1
+            fi
+            ;;
+        x)
+            if [[ ! -x "$file" ]]; then
+                return 1
+            fi
+            ;;
+        *)
+            log "ERROR" "Invalid access type: $access_type"
+            return 1
+            ;;
+    esac
+    
+    return 0
+}
+
+# Input validation
+validate_input() {
+    local input=$1
+    local type=$2
+    
+    case $type in
+        email)
+            if [[ $input =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+                return 0
+            fi
+            ;;
+        number)
+            if [[ $input =~ ^[0-9]+$ ]]; then
+                return 0
+            fi
+            ;;
+        ipv4)
+            if [[ $input =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+                # Additional validation for range
+                IFS='.' read -r a b c d <<< "$input"
+                if (( a <= 255 && b <= 255 && c <= 255 && d <= 255 )); then
+                    return 0
+                fi
+            fi
+            ;;
+        *)
+            log "ERROR" "Unknown validation type: $type"
+            return 1
+            ;;
+    esac
+    
+    return 1
+}
+
+#======================================================================
+# Configuration Management
+#======================================================================
+
+# Load configuration file
+load_config() {
+    local config_file=${1:-$CONFIG_FILE}
+    
+    log "DEBUG" "Loading configuration from: $config_file"
+    
+    if [[ ! -f "$config_file" ]]; then
+        log "WARNING" "Configuration file not found: $config_file"
+        return 1
+    fi
+    
+    # Read configuration file
+    while IFS='=' read -r key value; do
+        # Skip comments and empty lines
+        [[ $key =~ ^[[:space:]]*# ]] && continue
+        [[ -z $key ]] && continue
+        
+        # Remove leading/trailing whitespace
+        key=$(echo "$key" | xargs)
+        value=$(echo "$value" | xargs)
+        
+        # Set configuration variable
+        case $key in
+            verbose)
+                VERBOSE=$value
+                ;;
+            debug)
+                DEBUG=$value
+                ;;
+            log_file)
+                LOG_FILE=$value
+                ;;
+            *)
+                log "DEBUG" "Unknown configuration key: $key"
+                ;;
+        esac
+        
+    done < "$config_file"
+    
+    log "DEBUG" "Configuration loaded successfully"
+}
+
+# Create default configuration
+create_default_config() {
+    local config_file=${1:-$CONFIG_FILE}
+    
+    cat > "$config_file" << EOF
+# Configuration file for $SCRIPT_NAME
+# Generated on: $(date)
+
+# Logging options
+verbose=false
+debug=false
+log_file=$DEFAULT_LOG_FILE
+
+# Application settings
+max_retries=3
+timeout=30
+EOF
+    
+    log "INFO" "Created default configuration: $config_file"
+}
+
+#======================================================================
+# Main Application Functions
+#======================================================================
+
+# Example processing function with best practices
+process_data() {
+    local input_file=$1
+    local output_file=$2
+    
+    log "INFO" "Processing data: $input_file -> $output_file"
+    
+    # Input validation
+    if [[ -z "$input_file" ]] || [[ -z "$output_file" ]]; then
+        error_exit "Missing required parameters for process_data"
+    fi
+    
+    # File validation
+    if ! validate_file_access "$input_file" "r"; then
+        error_exit "Cannot read input file: $input_file"
+    fi
+    
+    if ! validate_file_access "$(dirname "$output_file")" "w"; then
+        error_exit "Cannot write to output directory: $(dirname "$output_file")"
+    fi
+    
+    # Create temporary file for processing
+    local temp_file="$DEFAULT_TEMP_DIR/processing.tmp"
+    mkdir -p "$(dirname "$temp_file")"
+    
+    # Process data with error handling
+    if ! awk '{print toupper($0)}' "$input_file" > "$temp_file"; then
+        error_exit "Failed to process input file"
+    fi
+    
+    # Validate processed data
+    if [[ ! -s "$temp_file" ]]; then
+        error_exit "Processing resulted in empty file"
+    fi
+    
+    # Move processed data to final location
+    if ! mv "$temp_file" "$output_file"; then
+        error_exit "Failed to move processed data to output file"
+    fi
+    
+    log "INFO" "Data processing completed successfully"
+}
+
+# Backup function example
+backup_file() {
+    local source_file=$1
+    local backup_dir=${2:-"./backups"}
+    
+    log "DEBUG" "Creating backup of: $source_file"
+    
+    # Validation
+    if [[ ! -f "$source_file" ]]; then
+        log "ERROR" "Source file does not exist: $source_file"
+        return 1
+    fi
+    
+    # Create backup directory
+    if ! mkdir -p "$backup_dir"; then
+        log "ERROR" "Cannot create backup directory: $backup_dir"
+        return 1
+    fi
+    
+    # Generate backup filename with timestamp
+    local timestamp=$(date +%Y%m%d_%H%M%S)
+    local filename=$(basename "$source_file")
+        # Expensive operation simulation
+    expensive_operation() {
+        local input=$1
+        echo "Performing expensive calculation for: $input"
+        sleep 1  # Simulate expensive operation
+        echo $((input * input))
+    }
+    
+    # Without caching
+    without_caching() {
+        echo "Without caching:"
+        local start_time=$(date +%s)
+        
+        for i in 5 3 7 3 5 7 5; do
+            result=$(expensive_operation $i)
+            echo "Result for $i: $result"
+        done
+        
+        local end_time=$(date +%s)
+        echo "Without caching took $((end_time - start_time)) seconds"
+    }
+    
+    # With caching
+    with_caching() {
+        echo "With caching:"
+        local start_time=$(date +%s)
+        
+        # Cache storage
+        declare -A cache
+        
+        for i in 5 3 7 3 5 7 5; do
+            if [ -n "${cache[$i]}" ]; then
+                echo "Cache hit for $i: ${cache[$i]}"
+            else
+                result=$(expensive_operation $i)
+                cache[$i]=$result
+                echo "Cached result for $i: $result"
+            fi
+        done
+        
+        local end_time=$(date +%s)
+        echo "With caching took $((end_time - start_time)) seconds"
+    }
+    
+    without_caching
+    echo ""
+    with_caching
+}
+
+# Resource usage monitoring
+resource_monitoring() {
+    echo ""
+    echo "=== Resource Usage Monitoring ==="
+    
+    # Function to monitor script resource usage
+    monitor_resources() {
+        local script_name=$1
+        local pid=$
+        
+        echo "Monitoring resources for PID: $pid"
+        echo "Script: $script_name"
+        
+        # Memory usage
+        if [ -f /proc/$pid/status ]; then
+            local mem_usage=$(grep VmRSS /proc/$pid/status | awk '{print $2 " " $3}')
+            echo "Memory usage: $mem_usage"
+        fi
+        
+        # CPU time
+        local cpu_time=$(ps -o time= -p $pid)
+        echo "CPU time: $cpu_time"
+        
+        # File descriptors
+        if [ -d /proc/$pid/fd ]; then
+            local fd_count=$(ls /proc/$pid/fd | wc -l)
+            echo "Open file descriptors: $fd_count"
+        fi
+    }
+    
+    # Resource-intensive operation
+    resource_intensive_task() {
+        echo "Running resource-intensive task..."
+        
+        # Create some data structures
+        declare -a large_array
+        for i in {1..1000}; do
+            large_array[i]="data_item_$i"
+        done
+        
+        # Open some files
+        exec 3> /tmp/test_output.txt
+        exec 4< /dev/null
+        
+        monitor_resources "resource_intensive_task"
+        
+        # Cleanup
+        exec 3>&-
+        exec 4<&-
+        rm -f /tmp/test_output.txt
+    }
+    
+    resource_intensive_task
+}
+
+# Performance tips summary
+performance_tips() {
+    echo ""
+    echo "=== Performance Optimization Tips ==="
+    echo ""
+    echo "1. Use built-in commands instead of external ones:"
+    echo "   Good: \${#string}       Bad: echo \$string | wc -c"
+    echo "   Good: \${string^^}      Bad: echo \$string | tr '[:lower:]' '[:upper:]'"
+    echo ""
+    echo "2. Minimize command substitution in loops:"
+    echo "   Bad:  for i in {1..1000}; do current_time=\$(date); done"
+    echo "   Good: start_time=\$(date); for i in {1..1000}; do ...; done"
+    echo ""
+    echo "3. Use arrays for batch operations:"
+    echo "   files=(\*.txt); for file in \"\${files[@]}\"; do ...; done"
+    echo ""
+    echo "4. Stream large files instead of loading into memory:"
+    echo "   Good: while read -r line; do ...; done < file"
+    echo "   Bad:  content=\$(cat file); for line in \$content; do ...; done"
+    echo ""
+    echo "5. Use parallel processing for independent tasks:"
+    echo "   task1 & task2 & task3 & wait"
+    echo ""
+    echo "6. Cache expensive operations:"
+    echo "   Use associative arrays to store computed results"
+    echo ""
+    echo "7. Profile your scripts:"
+    echo "   Use 'time' command and bash's TIMEFORMAT"
+    echo "   Monitor with 'ps', 'top', or '/proc' filesystem"
+    echo ""
+    echo "8. Minimize subshells:"
+    echo "   Good: var=\${var#prefix}  Bad: var=\$(echo \$var | sed 's/^prefix//')"
+}
+
+# Run all demonstrations
+performance_comparison
+memory_optimization
+loop_optimization
+builtin_vs_external
+parallel_processing
+
+# Only run caching demo if associative arrays are supported
+if declare -A test_array 2>/dev/null; then
+    caching_demo
+else
+    echo "Associative arrays not supported in this bash version (caching demo skipped)"
+fi
+
+resource_monitoring
+performance_tips
+
+echo ""
+echo "Performance optimization demonstrations completed!"
+echo "Remember: Always measure before and after optimization!"
+```
+
+---
+
+# Part 11: Real-World Applications
+
+## System Administration Scripts
+
+Practical scripts for system administration tasks.
+
+### System Health Monitor
+```bash
+#!/bin/bash
+
+# Comprehensive system health monitoring script
+system_health_monitor() {
+    echo "=========================================="
+    echo "         SYSTEM HEALTH REPORT"
+    echo "=========================================="
+    echo "Generated: $(date)"
+    echo "Hostname: $(hostname)"
+    echo "Uptime: $(uptime -p 2>/dev/null || uptime)"
+    echo ""
+    
+    # Disk usage check
+    check_disk_usage() {
+        echo "=== DISK USAGE ==="
+        
+        # Set threshold (percentage)
+        local threshold=80
+        
+        df -h | grep -E '^/dev/' | while read -r filesystem size used available percentage mount_point; do
+            # Extract numeric percentage
+            local usage=${percentage%?}
+            
+            printf "%-20s %8s %8s %8s %8s %s" "$filesystem" "$size" "$used" "$available" "$percentage" "$mount_point"
+            
+            if [ "$usage" -gt "$threshold" ]; then
+                printf " ⚠ WARNING"
+            else
+                printf " ✓ OK"
+            fi
+            echo ""
+        done
+        echo ""
+    }
+    
+    # Memory usage check
+    check_memory_usage() {
+        echo "=== MEMORY USAGE ==="
+        
+        if command -v free >/dev/null; then
+            free -h
+            echo ""
+            
+            # Get memory usage percentage
+            local mem_usage=$(free | awk 'NR==2{printf "%.0f", $3*100/($3+$7)}')
+            echo "Memory usage: ${mem_usage}%"
+            
+            if [ "$mem_usage" -gt 80 ]; then
+                echo "⚠ WARNING: High memory usage"
+            else
+                echo "✓ Memory usage normal"
+            fi
+        else
+            echo "Memory information not available"
+        fi
+        echo ""
+    }
+    
+    # CPU usage and load average
+    check_cpu_load() {
+        echo "=== CPU USAGE ==="
+        
+        # Load average
+        local load_avg=$(uptime | awk -F'load average:' '{print $2}' | xargs)
+        echo "Load average: $load_avg"
+        
+        # Number of CPU cores
+        local cpu_cores=$(nproc 2>/dev/null || echo "unknown")
+        echo "CPU cores: $cpu_cores"
+        
+        # Calculate load percentage (1-minute average)
+        if [ "$cpu_cores" != "unknown" ]; then
+            local load_1min=$(echo "$load_avg" | cut -d',' -f1 | xargs)
+            local load_percentage=$(echo "scale=0; $load_1min * 100 / $cpu_cores" | bc -l 2>/dev/null || echo "calculation unavailable")
+            
+            if [ "$load_percentage" != "calculation unavailable" ]; then
+                echo "Load percentage: ${load_percentage}%"
+                
+                if [ "$load_percentage" -gt 100 ]; then
+                    echo "⚠ WARNING: High CPU load"
+                else
+                    echo "✓ CPU load normal"
+                fi
+            fi
+        fi
+        
+        # Top CPU-consuming processes
+        echo ""
+        echo "Top CPU-consuming processes:"
+        ps aux --sort=-%cpu | head -6 | awk '{printf "%-10s %5s %5s %s\n", $1, $3"%", $4"%", $11}'
+        echo ""
+    }
+    
+    # Service status check
+    check_services() {
+        echo "=== SERVICE STATUS ==="
+        
+        # Define critical services to check
+        local services=("ssh" "sshd" "networking" "systemd-resolved" "cron")
+        
+        for service in "${services[@]}"; do
+            if systemctl is-active --quiet "$service" 2>/dev/null; then
+                printf "%-20s ✓ Running\n" "$service"
+            elif systemctl list-unit-files --quiet "$service.service" 2>/dev/null | grep -q "$service"; then
+                printf "%-20s ✗ Stopped\n" "$service"
+            else
+                printf "%-20s ? Not found\n" "$service"
+            fi
+        done
+        echo ""
+    }
+    
+    # Network connectivity check
+    check_network() {
+        echo "=== NETWORK CONNECTIVITY ==="
+        
+        # Test internet connectivity
+        if ping -c 1 8.8.8.8 >/dev/null 2>&1; then
+            echo "✓ Internet connectivity: OK"
+        else
+            echo "✗ Internet connectivity: FAILED"
+        fi
+        
+        # Check DNS resolution
+        if nslookup google.com >/dev/null 2>&1; then
+            echo "✓ DNS resolution: OK"
+        else
+            echo "✗ DNS resolution: FAILED"
+        fi
+        
+        # Show network interfaces
+        echo ""
+        echo "Network interfaces:"
+        if command -v ip >/dev/null; then
+            ip addr show | grep -E '^[0-9]+:|inet ' | sed 's/^[[:space:]]*/  /'
+        else
+            ifconfig 2>/dev/null | grep -E '^[a-zA-Z]|inet ' | sed 's/^[[:space:]]*/  /'
+        fi
+        echo ""
+    }
+    
+    # Security checks
+    check_security() {
+        echo "=== SECURITY STATUS ==="
+        
+        # Check for failed login attempts
+        if [ -f /var/log/auth.log ]; then
+            local failed_logins=$(grep "Failed password" /var/log/auth.log | wc -l 2>/dev/null || echo "0")
+            echo "Failed login attempts (auth.log): $failed_logins"
+        fi
+        
+        # Check for users with UID 0 (root privileges)
+        local root_users=$(awk -F: '$3==0{print $1}' /etc/passwd | tr '\n' ' ')
+        echo "Users with root privileges: $root_users"
+        
+        # Check for world-writable files in critical directories
+        echo "Checking for world-writable files..."
+        local critical_dirs=("/etc" "/bin" "/sbin" "/usr/bin" "/usr/sbin")
+        local writable_count=0
+        
+        for dir in "${critical_dirs[@]}"; do
+            if [ -d "$dir" ]; then
+                local count=$(find "$dir" -type f -perm -002 2>/dev/null | wc -l)
+                writable_count=$((writable_count + count))
+            fi
+        done
+        
+        if [ $writable_count -eq 0 ]; then
+            echo "✓ No world-writable files found in critical directories"
+        else
+            echo "⚠ WARNING: $writable_count world-writable files found"
+        fi
+        echo ""
+    }
+    
+    # Generate summary
+    generate_summary() {
+        echo "=== HEALTH SUMMARY ==="
+        
+        local status="HEALTHY"
+        local warnings=0
+        
+        # Check disk usage
+        local high_disk_usage=$(df -h | grep -E '^/dev/' | awk '{print $5}' | sed 's/%//' | awk '$1>80{print $1}' | wc -l)
+        if [ $high_disk_usage -gt 0 ]; then
+            status="WARNING"
+            ((warnings++))
+        fi
+        
+        # Check memory usage
+        local mem_usage=$(free | awk 'NR==2{printf "%.0f", $3*100/($3+$7)}' 2>/dev/null || echo "0")
+        if [ "$mem_usage" -gt 80 ] 2>/dev/null; then
+            status="WARNING"
+            ((warnings++))
+        fi
+        
+        # Check load average
+        local cpu_cores=$(nproc 2>/dev/null || echo "1")
+        local load_1min=$(uptime | awk -F'load average:' '{print $2}' | cut -d',' -f1 | xargs)
+        local load_percentage=$(echo "scale=0; $load_1min * 100 / $cpu_cores" | bc -l 2>/dev/null || echo "0")
+        
+        if [ "$load_percentage" -gt 100 ] 2>/dev/null; then
+            status="WARNING"
+            ((warnings++))
+        fi
+        
+        echo "Overall Status: $status"
+        echo "Warnings: $warnings"
+        echo ""
+        
+        if [ "$status" = "WARNING" ]; then
+            echo "⚠ ATTENTION REQUIRED: System has $warnings warning(s)"
+        else
+            echo "✓ SYSTEM HEALTHY: All checks passed"
+        fi
+    }
+    
+    # Run all checks
+    check_disk_usage
+    check_memory_usage  
+    check_cpu_load
+    check_services
+    check_network
+    check_security
+    generate_summary
+    
+    echo ""
+    echo "=========================================="
+    echo "End of system health report"
+    echo "=========================================="
+}
+
+# Log cleanup script
+log_cleanup() {
+    echo "=== LOG CLEANUP UTILITY ==="
+    
+    local log_dirs=("/var/log" "/tmp" "/var/tmp")
+    local days_old=7
+    local dry_run=${1:-false}
+    
+    echo "Log cleanup configuration:"
+    echo "  Directories: ${log_dirs[*]}"
+    echo "  Remove files older than: $days_old days"
+    echo "  Dry run mode: $dry_run"
+    echo ""
+    
+    for log_dir in "${log_dirs[@]}"; do
+        if [ ! -d "$log_dir" ]; then
+            echo "Directory not found: $log_dir"
+            continue
+        fi
+        
+        echo "Processing directory: $log_dir"
+        
+        # Find old log files
+        local old_files=$(find "$log_dir" -name "*.log*" -type f -mtime +$days_old 2>/dev/null)
+        local file_count=$(echo "$old_files" | grep -c . || echo "0")
+        
+        if [ "$file_count" -eq 0 ]; then
+            echo "  No old log files found"
+            continue
+        fi
+        
+        echo "  Found $file_count old log files"
+        
+        if [ "$dry_run" = "true" ]; then
+            echo "  Files that would be removed:"
+            echo "$old_files" | sed 's/^/    /'
+        else
+            echo "  Removing old log files..."
+            echo "$old_files" | while read -r file; do
+                if [ -f "$file" ]; then
+                    rm "$file"
+                    echo "    Removed: $file"
+                fi
+            done
+        fi
+        echo ""
+    done
+    
+    echo "Log cleanup completed"
+}
+
+# User account audit
+user_account_audit() {
+    echo "=== USER ACCOUNT AUDIT ==="
+    
+    echo "System user account summary:"
+    echo "============================"
+    
+    # Count different types of accounts
+    local total_accounts=$(wc -l < /etc/passwd)
+    local system_accounts=$(awk -F: '$3<1000{print $1}' /etc/passwd | wc -l)
+    local user_accounts=$((total_accounts - system_accounts))
+    
+    echo "Total accounts: $total_accounts"
+    echo "System accounts: $system_accounts"
+    echo "User accounts: $user_accounts"
+    echo ""
+    
+    # Show user accounts with details
+    echo "User accounts (UID >= 1000):"
+    echo "============================="
+    printf "%-15s %-8s %-20s %-20s %s\n" "Username" "UID" "Home Directory" "Shell" "Last Login"
+    echo "--------------------------------------------------------------------------------"
+    
+    awk -F: '$3>=1000 && $1!="nobody"{print $1, $3, $6, $7}' /etc/passwd | while read -r username uid homedir shell; do
+        # Get last login info
+        local last_login="Never"
+        if command -v lastlog >/dev/null 2>&1; then
+            last_login=$(lastlog -u "$username" 2>/dev/null | tail -n 1 | awk '{for(i=4;i<=NF;i++) printf "%s ", $i; print ""}' | xargs)
+            if [ -z "$last_login" ] || [[ "$last_login" == *"Never logged in"* ]]; then
+                last_login="Never"
+            fi
+        fi
+        
+        printf "%-15s %-8s %-20s %-20s %s\n" "$username" "$uid" "$homedir" "$shell" "$last_login"
+    done
+    
+    echo ""
+    
+    # Check for accounts with no password
+    echo "Accounts without password:"
+    echo "=========================="
+    local no_password_accounts=$(awk -F: '$2=="" || $2=="*" || $2=="!"' /etc/shadow 2>/dev/null | cut -d: -f1 || echo "Cannot check (permission denied)")
+    
+    if [ "$no_password_accounts" = "Cannot check (permission denied)" ]; then
+        echo "$no_password_accounts"
+    else
+        echo "$no_password_accounts" | head -10
+    fi
+    
+    echo ""
+    
+    # Check for duplicate UIDs
+    echo "Checking for duplicate UIDs:"
+    echo "============================"
+    local duplicate_uids=$(awk -F: '{print $3}' /etc/passwd | sort | uniq -d)
+    
+    if [ -z "$duplicate_uids" ]; then
+        echo "✓ No duplicate UIDs found"
+    else
+        echo "⚠ WARNING: Duplicate UIDs found:"
+        echo "$duplicate_uids"
+    fi
+    
+    echo ""
+    echo "User account audit completed"
+}
+
+# Run system administration demos
+echo "Running System Administration Scripts..."
+echo ""
+
+system_health_monitor
+
+echo ""
+echo "=========================================="
+echo ""
+
+# Run log cleanup in dry-run mode
+log_cleanup true
+
+echo ""
+echo "=========================================="
+echo ""
+
+user_account_audit
+```
+
+---
+
+## Automation Examples
+
+Practical automation scripts for common tasks.
+
+### Automated Backup System
+```bash
+#!/bin/bash
+
+# Comprehensive backup automation system
+automated_backup_system() {
+    echo "=== AUTOMATED BACKUP SYSTEM ==="
+    
+    # Configuration
+    local config_file="backup.conf"
+    local default_backup_dir="./backups"
+    local default_retention_days=7
+    local log_file="backup.log"
+    
+    # Create default configuration if it doesn't exist
+    create_default_config() {
+        if [ ! -f "$config_file" ]; then
+            cat > "$config_file" << EOF
+# Backup Configuration File
+# Format: source_path:destination_name:backup_type
+# backup_type: full, incremental, differential
+
+/home/user/documents:documents:full
+/home/user/pictures:pictures:incremental  
+/etc:system_config:full
+/var/www:website:differential
+EOF
+            echo "Created default configuration: $config_file"
+        fi
+    }
+    
+    # Logging function
+    log_message() {
+        local level=$1
+        local message=$2
+        local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+        
+        echo "[$timestamp] [$level] $message" | tee -a "$log_file"
+    }
+    
+    # Create backup directory structure
+    setup_backup_environment() {
+        local backup_base_dir=${1:-$default_backup_dir}
+        
+        mkdir -p "$backup_base_dir"/{full,incremental,differential}
+        mkdir -p "$backup_base_dir/logs"
+        
+        log_message "INFO" "Backup environment setup completed"
+    }
+    
+    # Full backup function
+    perform_full_backup() {
+        local source_path=$1
+        local dest_name=$2
+        local backup_base_dir=${3:-$default_backup_dir}
+        local timestamp=$(date +%Y%m%d_%H%M%S)
+        local backup_file="$backup_base_dir/full/${dest_name}_full_${timestamp}.tar.gz"
+        
+        log_message "INFO" "Starting full backup: $source_path -> $backup_file"
+        
+        if [ ! -d "$source_path" ] && [ ! -f "$source_path" ]; then
+            log_message "ERROR" "Source path does not exist: $source_path"
+            return 1
+        fi
+        
+        # Create backup with compression and progress
+        if tar -czf "$backup_file" -C "$(dirname "$source_path")" "$(basename "$source_path")" 2>/dev/null; then
+            local size=$(ls -lh "$backup_file" | awk '{print $5}')
+            log_message "INFO" "Full backup completed: $backup_file ($size)"
+            
+            # Create metadata file
+            cat > "${backup_file}.info" << EOF
+Backup Type: Full
+Source: $source_path
+Created: $(date)
+Size: $size
+Files: $(tar -tzf "$backup_file" | wc -l)
+EOF
+            return 0
+        else
+            log_message "ERROR" "Full backup failed: $source_path"
+            return 1
+        fi
+    }
+    
+    # Incremental backup function
+    perform_incremental_backup() {
+        local source_path=$1
+        local dest_name=$2
+        local backup_base_dir=${3:-$default_backup_dir}
+        local timestamp=$(date +%Y%m%d_%H%M%S)
+        local backup_file="$backup_base_dir/incremental/${dest_name}_incremental_${timestamp}.tar.gz"
+        local snapshot_file="$backup_base_dir/incremental/${dest_name}_snapshot"
+        
+        log_message "INFO" "Starting incremental backup: $source_path"
+        
+        if [ ! -d "$source_path" ] && [ ! -f "$source_path" ]; then
+            log_message "ERROR" "Source path does not exist: $source_path"
+            return 1
+        fi
+        
+        # Create incremental backup (files newer than snapshot)
+        local tar_options="-czf $backup_file"
+        if [ -f "$snapshot_file" ]; then
+            tar_options="$tar_options --newer-mtime=$(cat "$snapshot_file")"
+        fi
+        
+        if tar $tar_options -C "$(dirname "$source_path")" "$(basename "$source_path")" 2>/dev/null; then
+            local size=$(ls -lh "$backup_file" | awk '{print $5}')
+            log_message "INFO" "Incremental backup completed: $backup_file ($size)"
+            
+            # Update snapshot timestamp
+            date > "$snapshot_file"
+            
+            # Create metadata
+            cat > "${backup_file}.info" << EOF
+Backup Type: Incremental
+Source: $source_path
+Created: $(date)
+Size: $size
+Files: $(tar -tzf "$backup_file" | wc -l)
+Since: $(cat "$snapshot_file")
+EOF
+            return 0
+        else
+            log_message "ERROR" "Incremental backup failed: $source_path"
+            return 1
+        fi
+    }
+    
+    # Cleanup old backups
+    cleanup_old_backups() {
+        local backup_base_dir=${1:-$default_backup_dir}
+        local retention_days=${2:-$default_retention_days}
+        
+        log_message "INFO" "Starting cleanup of backups older than $retention_days days"
+        
+        local cleanup_count=0
+        for backup_type in full incremental differential; do
+            local backup_dir="$backup_base_dir/$backup_type"
+            
+            if [ -d "$backup_dir" ]; then
+                # Find and remove old backups
+                find "$backup_dir" -name "*.tar.gz" -type f -mtime +$retention_days | while read -r old_backup; do
+                    rm -f "$old_backup"
+                    rm -f "${old_backup}.info"
+                    log_message "INFO" "Removed old backup: $(basename "$old_backup")"
+                    ((cleanup_count++))
+                done
+            fi
+        done
+        
+        log_message "INFO" "Cleanup completed: $cleanup_count files removed"
+    }
+    
+    # Backup verification
+    verify_backup() {
+        local backup_file=$1
+        
+        log_message "INFO" "Verifying backup: $backup_file"
+        
+        if [ ! -f "$backup_file" ]; then
+            log_message "ERROR" "Backup file not found: $backup_file"
+            return 1
+        fi
+        
+        # Test archive integrity
+        if tar -tzf "$backup_file" >/dev/null 2>&1; then
+            log_message "INFO" "Backup verification successful: $backup_file"
+            return 0
+        else
+            log_message "ERROR" "Backup verification failed: $backup_file"
+            return 1
+        fi
+    }
+    
+    # Main backup execution
+    run_backup_job() {
+        local backup_base_dir=${1:-$default_backup_dir}
+        
+        log_message "INFO" "Starting backup job"
+        
+        local successful_backups=0
+        local failed_backups=0
+        
+        # Read configuration and perform backups
+        while IFS=':' read -r source_path dest_name backup_type; do
+            # Skip comments and empty lines
+            [[ $source_path =~ ^[[:space:]]*# ]] && continue
+            [[ -z $source_path ]] && continue
+            
+            case $backup_type in
+                "full")
+                    if perform_full_backup "$source_path" "$dest_name" "$backup_base_dir"; then
+                        ((successful_backups++))
+                    else
+                        ((failed_backups++))
+                    fi
+                    ;;
+                "incremental")
+                    if perform_incremental_backup "$source_path" "$dest_name" "$backup_base_dir"; then
+                        ((successful_backups++))
+                    else
+                        ((failed_backups++))
+                    fi
+                    ;;
+                "differential")
+                    log_message "INFO" "Differential backup not implemented yet for: $source_path"
+                    ;;
+                *)
+                    log_message "ERROR" "Unknown backup type: $backup_type"
+                    ((failed_backups++))
+                    ;;
+            esac
+        done < "$config_file"
+        
+        log_message "INFO" "Backup job completed: $successful_backups successful, $failed_backups failed"
+        
+        # Cleanup old backups
+        cleanup_old_backups "$backup_base_dir"
+        
+        return $failed_backups
+    }
+    
+    # Backup status report
+    generate_backup_report() {
+        local backup_base_dir=${1:-$default_backup_dir}
+        
+        echo ""
+        echo "=== BACKUP STATUS REPORT ==="
+        echo "Generated: $(date)"
+        echo ""
+        
+        for backup_type in full incremental differential; do
+            local backup_dir="$backup_base_dir/$backup_type"
+            
+            echo "$backup_type Backups:"
+            echo "$(echo "$backup_type" | tr '[:lower:]' '[:upper:]' | sed 's/./=/g')=========="
+            
+            if [ -d "$backup_dir" ]; then
+                local backup_count=$(find "$backup_dir" -name "*.tar.gz" -type f | wc -l)
+                
+                if [ $backup_count -eq 0 ]; then
+                    echo "No $backup_type backups found"
+                else
+                    echo "Found $backup_count $backup_type backup(s):"
+                    find "$backup_dir" -name "*.tar.gz" -type f -printf "%TY-%Tm-%Td %TH:%TM %10s %f\n" | sort -r | head -5 | while read -r date time size filename; do
+                        printf "  %-19s %10s  %s\n" "$date $time" "$size" "$filename"
+                    done
+                    
+                    if [ $backup_count -gt 5 ]; then
+                        echo "  ... and $((backup_count - 5)) more"
+                    fi
+                fi
+            else
+                echo "Backup directory not found: $backup_dir"
+            fi
+            echo ""
+        done
+        
+        # Show recent log entries
+        echo "Recent Log Entries:"
+        echo "==================="
+        if [ -f "$log_file" ]; then
+            tail -10 "$log_file"
+        else
+            echo "No log file found"
+        fi
+    }
+    
+    # Demo the backup system
+    echo "Setting up backup system demo..."
+    
+    # Create test data
+    mkdir -p test_data/{documents,pictures,config}
+    echo "Important document" > test_data/documents/readme.txt
+    echo "Business plan" > test_data/documents/business.doc
+    echo "Photo metadata" > test_data/pictures/photos.txt
+    echo "app_config=production" > test_data/config/app.conf
+    
+    # Create configuration
+    cat > "$config_file" << EOF
+# Demo backup configuration
+test_data/documents:documents:full
+test_data/pictures:pictures:incremental
+test_data/config:config:full
+EOF
+    
+    # Setup and run backup
+    setup_backup_environment
+    run_backup_job
+    
+    # Generate report
+    generate_backup_report
+    
+    echo ""
+    echo "Backup system demo completed!"
+    echo "Check the backups directory and backup.log file for results"
+}
+
+# Development environment setup automation
+dev_environment_setup() {
+    echo ""
+    echo "=== DEVELOPMENT ENVIRONMENT SETUP ==="
+    
+    # Configuration
+    local setup_log="setup.log"
+    
+    # Logging function
+    setup_log_message() {
+        local level=$1
+        local message=$2
+        local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+        
+        echo "[$timestamp] [$level] $message" | tee -a "$setup_log"
+    }
+    
+    # Check if command exists
+    command_exists() {
+        command -v "$1" >/dev/null 2>&1
+    }
+    
+    # Install package (simulation)
+    install_package() {
+        local package=$1
+        
+        setup_log_message "INFO" "Installing package: $package"
+        
+        # Simulate package installation
+        sleep 1
+        setup_log_message "INFO" "Package# Complete Shell Scripting Guide
