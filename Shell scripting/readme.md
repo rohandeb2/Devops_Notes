@@ -73,9 +73,7 @@
 ### **Part 11: Real-World Applications**
 46. [System Administration Scripts](#system-administration-scripts)
 47. [Automation Examples](#automation-examples)
-48. [Best Practices](#best-practices)
-49. [Common Pitfalls](#common-pitfalls)
-50. [Next Steps](#next-steps)
+
 
 ---
 
