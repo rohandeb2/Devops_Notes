@@ -1,0 +1,45 @@
+# Site settings
+title: DevOps Engineering Notes
+description: Comprehensive DevOps learning platform with practical guides and best practices
+baseurl: "/Devops_Notes"
+url: "https://rohandeb2.github.io"
+author: "Rohan Deb"
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Navigation
+header_pages:
+  - linux/readme.md
+  - Git and Github/readme.md
+  - Jenkins/readme.md
+
+# Social links
+github_username: rohandeb2
+linkedin_username: rohandeb
+
+# Google Analytics (optional)
+google_analytics: G-XXXXXXXXXX
+
+# SEO settings
+lang: en_US
+twitter:
+  username: your_twitter
+  card: summary_large_image
+
+# Exclude files
+exclude:
+  - vendor/
+  - .bundle/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - README.md
