@@ -27,8 +27,6 @@
 16. [Best Practices](#-best-practices)
 17. [Common Problems & Solutions](#-common-problems--solutions)
 18. [Advanced Concepts](#-advanced-concepts)
-19. [Real-World Projects](#-real-world-projects)
-20. [Next Steps](#-next-steps)
 
 ---
 
