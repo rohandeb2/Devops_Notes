@@ -225,12 +225,6 @@ spec:
 
 ## 💾 Storage and Persistence
 
-# 10 - Kubernetes Interview Preparation
-
-## 🎯 Core Concepts Interview Questions
-
-### **Q1: What is Kubernetes and why do we use it?**
-
 ### **Q9: Explain the difference between Volumes, PersistentVolumes, and PersistentVolumeClaims**
 
 **Answer:**
