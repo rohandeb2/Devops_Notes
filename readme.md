@@ -35,6 +35,7 @@ This repository serves as a **comprehensive knowledge base** for DevOps engineer
 
 ### Infrastructure & Cloud
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white)
@@ -79,6 +80,12 @@ This repository serves as a **comprehensive knowledge base** for DevOps engineer
   - Process & service management
   - Network configuration
 
+- [**Shell Scripting**](Shell%20scripting/)
+  - Bash scripting fundamentals
+  - Automation scripts
+  - System administration tasks
+  - Advanced scripting techniques
+
 </td>
 <td width="33%" valign="top">
 
@@ -89,10 +96,17 @@ This repository serves as a **comprehensive knowledge base** for DevOps engineer
   - Plugin ecosystem & security
   - Real-world scenarios & troubleshooting
 
+- [**GitLab**](gitlab/)
+  - GitLab CI/CD pipelines
+  - Container registry
+  - Security scanning
+  - DevSecOps integration
+
 - [**Docker**](Docker/)
   - Container fundamentals
   - Dockerfile optimization
   - Multi-stage builds & security
+  - Docker commands reference
 
 </td>
 <td width="33%" valign="top">
@@ -103,11 +117,25 @@ This repository serves as a **comprehensive knowledge base** for DevOps engineer
   - Workload deployment
   - Service mesh & networking
   - Security & RBAC
+  - Interview preparation
 
 - [**Terraform**](terraform/)
   - Infrastructure as Code
   - State management
   - Module development
+  - Cloud provisioning
+
+- [**Ansible**](ansible/)
+  - Configuration management
+  - Playbooks & roles
+  - Automation workflows
+  - Infrastructure provisioning
+
+- [**Networking**](Networking/)
+  - VPC & subnets
+  - Load balancers
+  - API Gateway
+  - DNS & routing
 
 </td>
 </tr>
@@ -115,17 +143,18 @@ This repository serves as a **comprehensive knowledge base** for DevOps engineer
 
 ### 📖 **Detailed Module Overview**
 
-| Module | Topics Covered | Skill Level | Est. Time |
-|--------|----------------|-------------|-----------|
-| 🐧 **[Linux](linux/)** | File systems, User management, Networking, Shell scripting | Beginner to Advanced | 4-6 weeks |
-| 🔀 **[Git & GitHub](Git%20and%20Github/)** | Version control, Branching, Merging, Collaboration workflows | Beginner to Intermediate | 2-3 weeks |
-| 🏗️ **[Jenkins](Jenkins/)** | CI/CD pipelines, Automation, Plugin management, Security | Intermediate to Advanced | 6-8 weeks |
-| 🐳 **[Docker](Docker/)** | Containerization, Image optimization, Security, Orchestration | Intermediate | 3-4 weeks |
-| ☁️ **[Kubernetes](kubernetes/)** | Container orchestration, Microservices, Service mesh | Advanced | 8-10 weeks |
-| 📱 **[Ansible](ansible/)** | Configuration management, Playbooks, Automation | Intermediate | 4-5 weeks |
-| 🏛️ **[Terraform](terraform/)** | Infrastructure as Code, State management, Modules | Intermediate to Advanced | 5-6 weeks |
-| 🔄 **[Shell Scripting](Shell%20scripting/)** | Automation scripts, System administration, Task automation | Beginner to Intermediate | 3-4 weeks |
-| 📊 **[GitLab](gitlab/)** | GitLab CI/CD, Container registry, Security scanning | Intermediate | 3-4 weeks |
+| Module | Topics Covered | Skill Level | Est. Time | Status |
+|--------|----------------|-------------|-----------|--------|
+| 🐧 **[Linux](linux/)** | File systems, User management, Networking, Shell scripting | Beginner to Advanced | 4-6 weeks | ✅ Active |
+| 🔀 **[Git & GitHub](Git%20and%20Github/)** | Version control, Branching, Merging, Collaboration workflows | Beginner to Intermediate | 2-3 weeks | ✅ Active |
+| 🏗️ **[Jenkins](Jenkins/)** | CI/CD pipelines, Automation, Plugin management, Security | Intermediate to Advanced | 6-8 weeks | ✅ Active |
+| 🐳 **[Docker](Docker/)** | Containerization, Image optimization, Security, Commands | Intermediate | 3-4 weeks | ✅ Active |
+| ☁️ **[Kubernetes](kubernetes/)** | Container orchestration, Microservices, Interview prep | Advanced | 8-10 weeks | ✅ Active |
+| 📱 **[Ansible](ansible/)** | Configuration management, Playbooks, Automation | Intermediate | 4-5 weeks | ✅ Active |
+| 🏛️ **[Terraform](terraform/)** | Infrastructure as Code, State management, Modules | Intermediate to Advanced | 5-6 weeks | ✅ Active |
+| 🔄 **[Shell Scripting](Shell%20scripting/)** | Automation scripts, System administration, Task automation | Beginner to Intermediate | 3-4 weeks | ✅ Active |
+| 📊 **[GitLab](gitlab/)** | GitLab CI/CD, Container registry, Security scanning | Intermediate | 3-4 weeks | ✅ Active |
+| 🌐 **[Networking](Networking/)** | VPC, Subnets, Load Balancers, API Gateway, DNS | Intermediate | 4-5 weeks | ✅ Active |
 
 ---
 
@@ -173,10 +202,12 @@ cd Devops_Notes
 2. **Infrastructure as Code** (5-6 weeks)
    - Learn [Terraform](terraform/) for infrastructure provisioning
    - Implement [Ansible](ansible/) for configuration management
+   - Master [Networking](Networking/) concepts
 
 3. **Container Orchestration** (8-10 weeks)
    - Master [Kubernetes](kubernetes/) fundamentals
    - Implement microservices architecture
+   - Prepare for technical interviews
 
 </details>
 
@@ -185,7 +216,7 @@ cd Devops_Notes
 
 1. **Enterprise Patterns**
    - Advanced Kubernetes patterns
-   - Multi-cloud strategies
+   - Multi-cloud strategies with Terraform
    - Security and compliance automation
 
 2. **Platform Engineering**
@@ -193,7 +224,41 @@ cd Devops_Notes
    - Implement GitOps workflows
    - Advanced monitoring and observability
 
+3. **Interview Mastery**
+   - Review [Kubernetes interview preparation](kubernetes/)
+   - Practice system design scenarios
+   - Master troubleshooting techniques
+
 </details>
+
+---
+
+## 🎓 Learning Journey & Cloud Technologies
+
+Based on my comprehensive study notes, here's the complete learning path covering:
+
+### ☁️ **Cloud Fundamentals**
+- **VPC (Virtual Private Cloud)** - Subnets, Routing, Security Groups
+- **AWS Core Services** - EC2, S3, IAM, RDS, ELB, Lambda, CloudWatch, CloudFront
+- **Load Balancing** - Application Load Balancer, Network Load Balancer, API Gateway
+- **Database Management** - RDS, DynamoDB, Database Migration Service
+
+### 🔧 **Infrastructure as Code**
+- **AWS CloudFormation** - Templates, Stacks, Nested Stacks
+- **Terraform** - Providers, Resources, Modules, State Management
+- **HashiCorp Vault** - Secrets Management, Policy Management
+
+### 📊 **Monitoring & Observability**
+- **Prometheus** - Metrics Collection, AlertManager
+- **Grafana** - Dashboards, Visualization, Alerts
+- **ELK Stack** - Elasticsearch, Logstash, Kibana
+- **Azure Monitor** - Log Analytics, Application Insights
+
+### 🔒 **Security & Compliance**
+- **AWS IAM** - Policies, Roles, Users, Groups
+- **Azure Active Directory** - Identity Management, RBAC
+- **Security Scanning** - SAST, DAST, Container Security
+- **Key Management** - AWS KMS, Azure Key Vault, HashiCorp Vault
 
 ---
 
@@ -206,7 +271,7 @@ cd Devops_Notes
 - Troubleshooting guides and solutions
 
 ### 📈 **Career Development**
-- Interview preparation materials
+- Interview preparation materials (especially Kubernetes)
 - Skill progression roadmaps
 - Industry insights and trends
 - Professional growth guidance
@@ -285,6 +350,8 @@ We welcome contributions from the DevOps community! Here's how you can help:
 - 🌍 **Community Driven**: Contributions from industry professionals
 - 🔄 **Regular Updates**: Monthly updates with latest practices
 - 📈 **Career Focused**: Interview preparation and skill development guides
+- ☁️ **Cloud Native**: Complete AWS and Azure coverage
+- 🔒 **Security First**: Security best practices integrated throughout
 
 ---
 
@@ -295,13 +362,15 @@ We welcome contributions from the DevOps community! Here's how you can help:
 - [Continuous Delivery](https://continuousdelivery.com/)
 - [Site Reliability Engineering](https://sre.google/books/)
 - [Building Microservices](https://www.oreilly.com/library/view/building-microservices/9781491950340/)
+- [Kubernetes: Up and Running](https://www.oreilly.com/library/view/kubernetes-up-and/9781492046523/)
 
 ### 🎓 **Certification Paths**
-- AWS Certified DevOps Engineer
+- AWS Certified DevOps Engineer - Professional
 - Azure DevOps Engineer Expert
 - Google Cloud Professional DevOps Engineer
 - Kubernetes Certified Administrator (CKA)
 - Jenkins Certified Engineer
+- HashiCorp Certified: Terraform Associate
 
 ### 🌐 **Community & Support**
 - [DevOps Reddit Community](https://reddit.com/r/devops)
