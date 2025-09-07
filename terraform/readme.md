@@ -3,7 +3,7 @@
 [![Terraform](https://img.shields.io/badge/Terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)](https://terraform.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> A comprehensive handbook that takes you from zero to Terraform expert, with theory, examples, and hands-on practice.
+> A comprehensive handbook that takes you from zero to Terraform expert, with theory, examples, and hands-on practice
 
 ---
 
